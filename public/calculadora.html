@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Orçamento - FH TECH</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Adicione aqui seus estilos ou frameworks CSS como Bootstrap, Tailwind, etc. -->
+
+    <style>
+        /* Estilo para o fundo espacial */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(125deg, #090322 0%, #1B0E41 28%, #2B0F52 80%, #200C43 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        .stars-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle var(--duration) infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+
+        .meteor {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 1px white, 0 0 20px 2px rgba(255, 255, 255, 0.6);
+            transform: rotate(-45deg);
+            opacity: 0;
+        }
+
+        .meteor::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(to right, white, transparent);
+            transform-origin: left center;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.1;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes meteor {
+            0% {
+                opacity: 0;
+                transform: translateX(0) translateY(0) rotate(-45deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-1000px) translateY(1000px) rotate(-45deg);
+            }
+        }
+
+        /* Estilos para o header e conteúdo principal */
+        header {
+            position: relative;
+            z-index: 1;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Estilos específicos para a calculadora */
+        .calculator-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.95);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Aumentando o tamanho dos títulos das seções */
+        label {
+            font-size: 25px; 
+            font-weight: 700; 
+        }
+
+        #project-type label,
+        #pages-slider label,
+        #features label,
+        #design label,
+        #deadline label {
+            font-size: 26px; 
+        }
+
+        h1, h2, h3, p, label {
+    color: #00ff26; 
+        }
+    </style>
+</head>
+
+<body>
+  
+    <div class="stars-container" id="stars-container"></div>
+
+    <!-- O conteúdo do formulário e calculadora vem aqui -->
+
+    <script>
+        // Script para criar estrelas e meteoros
+        document.addEventListener('DOMContentLoaded', function() {
+            const starsContainer = document.getElementById('stars-container');
+
+            // Função para criar uma estrela
+            function createStar() {
+                const star = document.createElement('div');
+                star.classList.add('star');
+
+                // Tamanho aleatório para as estrelas
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+
+                // Posição aleatória
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                star.style.left = `${x}px`;
+                star.style.top = `${y}px`;
+
+                // Duração e atraso de animação aleatórios
+                const duration = 2 + Math.random() * 3;
+                const delay = Math.random() * 5;
+                star.style.setProperty('--duration', `${duration}s`);
+                star.style.setProperty('--delay', `${delay}s`);
+
+                starsContainer.appendChild(star);
+            }
+
+            // Função para criar um meteoro
+            function createMeteor() {
+                const meteor = document.createElement('div');
+                meteor.classList.add('meteor');
+
+                // Posição inicial aleatória
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                meteor.style.left = `${x}px`;
+                meteor.style.top = `${y}px`;
+
+                // Duração do movimento e opacidade do meteorito
+                const duration = 1 + Math.random() * 2; // tempo de animação
+                meteor.style.animation = `meteor ${duration}s linear`;
+
+                starsContainer.appendChild(meteor);
+
+                // Remover o meteorito após a animação
+                setTimeout(() => {
+                    meteor.remove();
+                }, duration * 1000);
+            }
+
+            // Criar estrelas
+            for (let i = 0; i < 200; i++) {
+                createStar();
+            }
+
+            // Criar meteoros periodicamente
+            setInterval(createMeteor, 2000);
+
+            // Tornar as estrelas responsivas
+            window.addEventListener('resize', function() {
+                const stars = document.querySelectorAll('.star');
+                stars.forEach(star => {
+                    const newX = Math.random() * window.innerWidth;
+                    const newY = Math.random() * window.innerHeight;
+                    star.style.left = `${newX}px`;
+                    star.style.top = `${newY}px`;
+                });
+            });
+        });
+
+        // Interação com as opções da calculadora
+        // Código JavaScript para interagir com a calculadora vem aqui...
+    </script>
+<style>
+    /* Estilos específicos para a calculadora */
+    .calculator-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro com transparência */
+        color: white; 
+    }
+    
+    .form-group {
+        margin-bottom: 25px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #fff; 
+    }
+    
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white; 
+    }
+    
+    .options-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 10px;
+    }
+    
+    .option-card {
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.2); /* Fundo dos cards com transparência */
+        color: white; 
+    }
+    
+    .option-card:hover {
+        border-color: #3182ce;
+        transform: translateY(-2px);
+        background-color: rgba(49, 130, 206, 0.1); 
+    }
+    
+    .option-card.selected {
+        border-color: #3182ce;
+        background-color: rgba(49, 130, 206, 0.2); 
+    }
+    
+    .price-display {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.2); /* Fundo do preço com transparência */
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    
+    .price-breakdown {
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+    }
+    
+    .breakdown-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        color: white; 
+    }
+    
+    .cta-button {
+        display: block;
+        width: 100%;
+        margin-top: 30px;
+        padding: 15px;
+        background-color: #3182ce;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .cta-button:hover {
+        background-color: #2c5282;
+    }
+    
+/* Estilos para o slider */
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none; 
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+  border-radius: 3px;
+  margin: 15px 0;
+  transition: background 0.3s;
+}
+
+/* Estilo do controle deslizante (thumb) */
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: white;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.range-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: white;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+}
+
+
+.range-slider:hover {
+  background: white;
+}
+
+.range-values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  color: white; 
+}
+</style>
+
+</head>
+<body>
+    <header style="text-align: center; padding: 20px 0;">
+        <!-- Cabeçalho centralizado -->
+        <nav>
+            <a href="index.html" class="back-button">Voltar</a>
+        </nav>
+    </header>
+    
+    <style>
+    .back-button {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #3182ce;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .back-button:hover {
+        background-color: #2c5282;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .back-button:active {
+        transform: translateY(0);
+    }
+    </style>
+
+<main>
+    <div class="calculator-container">
+        <h1 style="text-align: center;">Calcular Orçamento</h1>
+        <p style="text-align: center;">Selecione as opções abaixo para obter uma estimativa de investimento para seu projeto digital.</p>
+        
+        <div class="form-group" style="text-align: center;">
+            <label>Tipo de Projeto</label>
+            <div class="options-grid" id="project-type" style="text-align: center;">
+                <div class="option-card" data-value="website" data-price="2500">
+                    <h3>Website</h3>
+                    <p>Site institucional, landing page ou blog</p>
+                </div>
+                <div class="option-card" data-value="ecommerce" data-price="6000">
+                    <h3>E-commerce</h3>
+                    <p>Loja virtual completa com gestão de produtos</p>
+                </div>
+                <div class="option-card" data-value="webapp" data-price="8000">
+                    <h3>Aplicação Web</h3>
+                    <p>Sistema web personalizado com área de login</p>
+                </div>
+                <div class="option-card" data-value="mobileapp" data-price="12000">
+                    <h3>Aplicativo Mobile</h3>
+                    <p>App para Android e/ou iOS</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group" style="text-align: center;">
+            <label>Número de Páginas/Telas</label>
+            <input type="range" min="1" max="20" value="5" class="range-slider" id="pages-slider">
+            <div class="range-values">
+              <span>1</span>
+              <span id="pages-value">5</span>
+              <span>20</span>
+            </div>
+          </div>
+        
+          <script>
+            // Atualiza o valor exibido quando o slider é movido
+            const slider = document.getElementById('pages-slider');
+            const output = document.getElementById('pages-value');
+            
+            slider.oninput = function() {
+              output.textContent = this.value;
+            }
+          </script>
+        
+        <div class="form-group" style="text-align: center;">
+            <label>Funcionalidades</label>
+            <div class="options-grid" id="features" style="text-align: center;">
+                <div class="option-card" data-value="auth" data-price="1200">
+                    <h3>Autenticação</h3>
+                    <p>Sistema de login e cadastro</p>
+                </div>
+                <div class="option-card" data-value="payment" data-price="2000">
+                    <h3>Pagamentos</h3>
+                    <p>Integração com gateway de pagamento</p>
+                </div>
+                <div class="option-card" data-value="admin" data-price="1800">
+                    <h3>Painel Admin</h3>
+                    <p>Área administrativa completa</p>
+                </div>
+                <div class="option-card" data-value="api" data-price="1500">
+                    <h3>Integração API</h3>
+                    <p>Conexão com serviços externos</p>
+                </div>
+                <div class="option-card" data-value="seo" data-price="800">
+                    <h3>SEO Avançado</h3>
+                    <p>Otimização para mecanismos de busca</p>
+                </div>
+                <div class="option-card" data-value="multilanguage" data-price="1200">
+                    <h3>Multi-idioma</h3>
+                    <p>Suporte para múltiplos idiomas</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group" style="text-align: center;">
+            <label>Complexidade de Design</label>
+            <div class="options-grid" id="design" style="text-align: center;">
+                <div class="option-card" data-value="basic" data-price="800">
+                    <h3>Básico</h3>
+                    <p>Template padrão com pequenas customizações</p>
+                </div>
+                <div class="option-card" data-value="custom" data-price="2500">
+                    <h3>Personalizado</h3>
+                    <p>Design exclusivo seguindo sua identidade visual</p>
+                </div>
+                <div class="option-card" data-value="premium" data-price="5000">
+                    <h3>Premium</h3>
+                    <p>Design exclusivo com animações e interações avançadas</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group" style="text-align: center;">
+            <label>Prazo de Entrega</label>
+            <select class="form-control" id="deadline" style="text-align: center;">
+                <option value="normal" data-price="0">Normal (60 dias)</option>
+                <option value="fast" data-price="1500">Rápido (30 dias)</option>
+                <option value="urgent" data-price="3000">Urgente (15 dias)</option>
+            </select>
+        </div>
+        
+        <div class="price-display" style="text-align: center;">
+            <div>Investimento Estimado</div>
+            <div id="total-price">R$ 0,00</div>
+        </div>
+        
+        <div class="price-breakdown" id="price-breakdown" style="text-align: center;">
+         
+            <form id="proposalForm" style="display: none;">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Seu nome" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Seu e-mail" required>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="subject" id="proposalSubject" value="Proposta detalhada da calculadora">
+                </div>
+            </form>
+
+        </div>
+        
+        <button class="cta-button" id="contact-btn" style="text-align: center;">Solicitar Proposta Detalhada</button>
+    </div>
+</main>
+    <footer>
+        <!-- Seu rodapé aqui -->
+    </footer>
+
+    
+    <script src="calculadora.js"></script>
+    
+    <script>
+    // Função para o botão de solicitar proposta
+    document.getElementById('contact-btn').addEventListener('click', function() {
+    // Captura os detalhes do orçamento
+    const priceBreakdown = document.getElementById('price-breakdown').innerText;
+    
+    // Exibir prompt para coletar informações do usuário
+    const userInfo = prompt('Para receber a proposta, informe seu nome e e-mail separados por vírgula (ex: Nome, email@exemplo.com)');
+    
+    if (userInfo) {
+        const [name, email] = userInfo.split(',').map(info => info.trim());
+        
+        if (!name || !email || !email.includes('@')) {
+            alert('Por favor, informe um nome e e-mail válidos.');
+            return;
+        }
+        
+        // Mostrar feedback visual
+        const contactBtn = document.getElementById('contact-btn');
+        const originalText = contactBtn.innerText;
+        contactBtn.innerText = 'Enviando...';
+        contactBtn.disabled = true;
+        
+      
+        const mensagem = `*Nova solicitação de proposta da calculadora*%0A%0A*Nome:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A%0A*Detalhes do orçamento:*%0A${encodeURIComponent(priceBreakdown)}`;
+
+        const whatsappNumber = "5511956795412";
+        
+        // Criar o link do WhatsApp
+        const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(mensagem)}`;
+        
+        // Exibir no console para debugging
+        console.log('Redirecionando para WhatsApp');
+        
+        // Depois de um breve tempo para mostrar o estado "enviando"
+        setTimeout(() => {
+            // Redirecionar para WhatsApp
+            window.open(whatsappLink, '_blank');
+            
+            // Restaurar o botão
+            contactBtn.innerText = originalText;
+            contactBtn.disabled = false;
+        }, 800);
+    }
+});
+    </script>
+
+</body>
+</html>

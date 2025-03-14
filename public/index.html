@@ -405,6 +405,57 @@
   animation-delay: 0.3s;
 }
 
+/* Mantém o design original para todos os dispositivos */
+.scroll-down-icon {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mouse {
+  width: clamp(20px, 6vw, 30px);
+  height: clamp(35px, 10vw, 50px);
+  border: 2px solid rgba(0, 162, 255, 0.8);
+  border-radius: 15px;
+  position: relative;
+}
+
+#cta-button {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 162, 255, 0.7),
+              0 0 20px rgba(0, 162, 255, 0.5),
+              0 0 30px rgba(0, 162, 255, 0.3);
+  padding: clamp(0.5rem, 3vw, 1rem) clamp(1rem, 5vw, 2rem);
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+}
+
+#cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(0, 162, 255, 0.8),
+              0 0 30px rgba(0, 162, 255, 0.6),
+              0 0 45px rgba(0, 162, 255, 0.4);
+}
+
+/* Ajustes específicos apenas para mobile */
+@media screen and (max-width: 767px) {
+  .scroll-down-icon {
+    position: relative;
+    bottom: auto;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  #cta-button {
+    width: 80%;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: visible;
+  }
+}
+
 /* Media queries para ajustes específicos em diferentes tamanhos de tela */
 @media (max-width: 768px) {
   /* Ajustes para tablets */

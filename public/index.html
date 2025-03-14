@@ -215,54 +215,96 @@
     <!-- O script vai adicionar o container de estrelas automaticamente -->
 
     <!-- Primeira Camada: Introdução -->
-<header class="h-screen flex flex-col items-center justify-center text-center px-6 relative z-10"> 
+    <header class="h-screen flex flex-col items-center justify-center text-center px-6 relative z-10"> 
    
-  <img src="img/a.WEBP" alt="FH Tech Logo" class="w-32 h-auto mb-4"> 
- 
-  <h1 id="title" class="text-5xl font-bold text-white"></h1> 
-  
-  <p id="description" class="text-lg mt-4 text-white"></p>
-  
-  <!-- Contadores -->
-  <div class="flex justify-center gap-6 mt-6">
-      <div class="counter-box">
-          <span id="projectsCounter" class="text-3xl font-bold text-blue-400">0</span>
-          <p class="text-white text-sm">Projetos Entregues</p>
+      <!-- Logo movida para o canto superior esquerdo com luz azul -->
+      <div class="logo-container absolute top-4 left-4 z-20">
+        <div class="logo-glow"></div>
+        <img src="img/a.WEBP" alt="FH Tech Logo" class="w-20 h-auto logo-float relative z-10"> 
       </div>
-      <div class="counter-box">
-          <span id="clientsCounter" class="text-3xl font-bold text-blue-400">0</span>
-          <p class="text-white text-sm">Clientes Felizes</p>
+     
+      <h1 id="title" class="text-5xl font-bold text-white"></h1> 
+      
+      <p id="description" class="text-lg mt-4 text-white"></p>
+      
+      <!-- Contadores -->
+      <div class="flex justify-center gap-6 mt-6">
+        <div class="counter-box">
+            <span id="projectsCounter" class="font-bold text-blue-400">0</span>
+            <p class="text-white text-sm">Projetos Entregues</p>
+        </div>
+        <div class="counter-box">
+            <span id="clientsCounter" class="font-bold text-blue-400">0</span>
+            <p class="text-white text-sm">Clientes Felizes</p>
+        </div>
+        <div class="counter-box">
+            <span id="experienceCounter" class="font-bold text-blue-400">0</span>
+            <p class="text-white text-sm">Anos de Experiência</p>
+        </div>
       </div>
-      <div class="counter-box">
-          <span id="experienceCounter" class="text-3xl font-bold text-blue-400">0</span>
-          <p class="text-white text-sm">Anos de Experiência</p>
+      
+    <!-- Botão com Glow Neon --> 
+    <button id="cta-button" class="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg relative overflow-hidden" onclick="window.location.href='calculadora.html'"> 
+      <span class="relative z-10">Saiba Mais</span>
+      <div id="particles-container" class="absolute inset-0 z-0"></div>
+    </button>
+      
+      <!-- Ícone de scroll down -->
+      <div class="scroll-down-icon absolute bottom-10">
+          <div class="mouse">
+              <div class="wheel"></div>
+          </div>
+          <div class="arrows">
+              <span class="arrow-down"></span>
+              <span class="arrow-down"></span>
+          </div>
       </div>
-  </div>
-  
-<!-- Botão com Glow Neon --> 
-<button id="cta-button" class="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg relative overflow-hidden" onclick="window.location.href='calculadora.html'"> 
-  <span class="relative z-10">Saiba Mais</span>
-  <div id="particles-container" class="absolute inset-0 z-0"></div>
-</button>
-  
-  <!-- Ícone de scroll down -->
-  <div class="scroll-down-icon absolute bottom-10">
-      <div class="mouse">
-          <div class="wheel"></div>
-      </div>
-      <div class="arrows">
-          <span class="arrow-down"></span>
-          <span class="arrow-down"></span>
-      </div>
-  </div>
-  
-  <!-- CSS para os novos elementos --> 
-  <style> 
-  @font-face {
-  font-family: 'HackerFont';
-  src: url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/fonts/hack-regular.woff2') format('woff2');
-}
+      
+      <!-- CSS para os novos elementos --> 
+      <style> 
+      @font-face {
+        font-family: 'HackerFont';
+        src: url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/fonts/hack-regular.woff2') format('woff2');
+      }
+        
+      /* Estilos para o logo no canto superior esquerdo com luz azul */
+      .logo-container {
+        position: fixed;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     
+      .logo-float {
+        animation: float 3s ease-in-out infinite;
+        width: 100%;
+        height: auto;
+      }
+    
+      .logo-glow {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(0, 162, 255, 0.7) 0%, rgba(0, 162, 255, 0) 70%);
+        border-radius: 50%;
+        z-index: 0;
+        animation: pulse 3s ease-in-out infinite;
+      }
+    
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+    
+      @keyframes pulse {
+        0% { opacity: 0.5; transform: scale(0.8); }
+        50% { opacity: 0.8; transform: scale(1.2); }
+        100% { opacity: 0.5; transform: scale(0.8); }
+      }
+
 #title, #description {
   font-family: 'HackerFont', 'Courier New', monospace;
   position: relative;
@@ -546,6 +588,31 @@
   border-radius: 50%;
   pointer-events: none;
 }
+
+/* Ajustando os tamanhos dos números */
+#projectsCounter,
+#clientsCounter,
+#experienceCounter {
+  font-size: 2.5rem; 
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  #projectsCounter,
+  #clientsCounter,
+  #experienceCounter {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #projectsCounter,
+  #clientsCounter,
+  #experienceCounter {
+    font-size: 1.8rem;
+  }
+}
+
   </style> 
   
   <script> 
@@ -833,9 +900,9 @@
     
     <!-- Terceira Camada: Benefícios e Diferenciais -->
     <section class="py-16 text-center bg-transparent relative z-10">
-        <h2 class="text-3xl font-bold text-white mb-8 animate-fade-in">
-            Por que escolher a <span class="text-blue-400">FlyHigh Tech</span>?
-        </h2>
+      <h2 class="text-3xl font-bold text-white mb-8 animate-fade-in whitespace-nowrap">
+        Por que escolher a <span class="text-blue-400">FlyHigh Tech</span>?
+    </h2>
         <p class="text-white text-lg mb-6 animate-fade-in delay-200">
             Design inovador, tecnologia de ponta e experiência de usuário aprimorada.
         </p>
@@ -940,6 +1007,14 @@
     background-color: transparent !important;
     backdrop-filter: none !important;
   }
+
+  @media screen and (max-width: 767px) {
+  h2 .text-blue-400,
+  h2 .text-blue-400 + .text-white {
+    display: inline;
+    white-space: nowrap;
+  }
+}
 }
 </style>
 
@@ -1245,5 +1320,229 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         });
         
     </script>
+
+<div id="hacker-terminal" class="fixed inset-0 bg-black z-50 hidden overflow-hidden">
+  <div class="terminal-content p-6 font-mono text-green-500 h-full overflow-y-auto">
+    <div class="terminal-header flex justify-between mb-4">
+      <div class="text-sm">root@flyhigh-tech:~#</div>
+      <button id="close-terminal" class="text-red-500 hover:text-red-300">[X] Fechar</button>
+    </div>
+    <div id="terminal-output" class="terminal-output"></div>
+  </div>
+</div>
+
+<!-- Estilos do Terminal -->
+<style>
+  .terminal-content {
+    font-family: 'HackerFont', monospace;
+    background-color: rgba(0, 0, 0, 0.95);
+    border: 1px solid #0f0;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .terminal-output {
+    line-height: 1.5;
+  }
+  
+  .terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background-color: #0f0;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
+  .terminal-line {
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 0.05s steps(1);
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  .terminal-command {
+    color: #0f0;
+  }
+  
+  .terminal-response {
+    color: #0ff;
+  }
+  
+  .terminal-warning {
+    color: #ff0;
+  }
+  
+  .terminal-error {
+    color: #f00;
+  }
+  
+  .terminal-success {
+    color: #0f0;
+    font-weight: bold;
+  }
+  
+  .terminal-ascii {
+    font-family: monospace;
+    white-space: pre;
+    line-height: 1.2;
+    color: #0f0;
+    margin: 10px 0;
+  }
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .terminal-content {
+      font-size: 14px; /* Ajusta o tamanho da fonte para telas menores */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .terminal-content {
+      font-size: 12px; /* Ajusta ainda mais para telas muito pequenas */
+    }
+  }
+</style>
+
+<!-- Script do Terminal -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const terminal = document.getElementById('hacker-terminal');
+    const terminalOutput = document.getElementById('terminal-output');
+    const closeTerminal = document.getElementById('close-terminal');
+    const logo = document.querySelector('.logo-container img');
+    
+    // Sequência de comandos e respostas
+    const terminalSequence = [
+      { text: 'Iniciando FlyHigh.Tech...', type: 'command', delay: 500 },
+      { text: 'Sistema inicializado com sucesso.', type: 'response', delay: 800 },
+      { text: 'Conectando ao servidor...', type: 'command', delay: 1000 },
+      { text: 'Conexão estabelecida com sucesso! IP: 192.168.1.1', type: 'response', delay: 1200 },
+      { text: 'Verificando segurança da rede...', type: 'command', delay: 800 },
+      { text: '[ ████████████████ ] 100% Completo', type: 'response', delay: 1500 },
+      { text: 'Hackeando o sistema do PF... (brinks 😎)', type: 'command', delay: 1000 },
+      { text: 'ALERTA! ACESSO NEGADO! OPERAÇÃO ILEGAL DETECTADA!', type: 'error', delay: 1000 },
+      { text: 'Brincadeira cancelada. Voltando às operações normais...', type: 'warning', delay: 1200 },
+      { text: 'Preparando ambiente de desenvolvimento...', type: 'command', delay: 800 },
+      { text: 'Instalando dependências: React, TailwindCSS, Node.js', type: 'response', delay: 1000 },
+      { text: 'Otimizando performance do site...', type: 'command', delay: 900 },
+      { text: 'Configurando CDN e compressão de arquivos...', type: 'response', delay: 800 },
+      { text: 'Implantando site na nuvem...', type: 'command', delay: 1000 },
+      { text: `
+    /'___\\  /'___\\           /'___\\       
+   /\\ \\__/ /\\ \\__/  __  __  /\\ \\__/       
+   \\ \\ ,__\\\\ \\ ,__\\/\\ \\/\\ \\ \\ \\ ,__\\      
+    \\ \\ \\_/ \\ \\ \\_/\\ \\ \\_\\ \\ \\ \\ \\_/      
+     \\ \\_\\   \\ \\_\\  \\ \\____/  \\ \\_\\       
+      \\/_/    \\/_/   \\/___/    \\/_/       
+                                      
+   /'___\\           /'___\\                
+  /\\ \\__/  __  __  /\\ \\__/                
+  \\ \\ ,__\\/\\ \\/\\ \\ \\ \\ ,__\\               
+   \\ \\ \\_/\\ \\ \\_\\ \\ \\ \\ \\_/               
+    \\ \\_\\  \\ \\____/  \\ \\_\\                
+     \\/_/   \\/___/    \\/_/                
+`, type: 'ascii', delay: 800 },
+      { text: 'Seu site já está voando nas nuvens 🚀', type: 'success', delay: 1000 }
+    ];
+    
+    // Função para adicionar uma linha no terminal com efeito de digitação
+    function addTerminalLine(text, type, index = 0) {
+      if (index === 0) {
+        const line = document.createElement('div');
+        line.classList.add('terminal-line');
+        line.classList.add(`terminal-${type}`);
+        terminalOutput.appendChild(line);
+        
+        setTimeout(() => {
+          typeText(line, text, 0);
+        }, 100);
+      }
+    }
+    
+    function typeText(element, text, index) {
+      if (index < text.length) {
+        element.textContent = text.substring(0, index + 1);
+        setTimeout(() => {
+          typeText(element, text, index + 1);
+        }, Math.random() * 50 + 30);
+      } else {
+        // Adicionar cursor piscante no final
+        const cursor = document.createElement('span');
+        cursor.classList.add('terminal-cursor');
+        element.appendChild(cursor);
+        
+        // Remover o cursor após 500ms
+        setTimeout(() => {
+          if (element.contains(cursor)) {
+            element.removeChild(cursor);
+          }
+        }, 500);
+      }
+    }
+    
+    // Função para executar a sequência do terminal
+    function runTerminalSequence() {
+      let currentIndex = 0;
+      
+      function processNextItem() {
+        if (currentIndex < terminalSequence.length) {
+          const item = terminalSequence[currentIndex];
+          
+          if (item.type === 'ascii') {
+            const asciiArt = document.createElement('pre');
+            asciiArt.classList.add('terminal-ascii');
+            asciiArt.textContent = item.text;
+            terminalOutput.appendChild(asciiArt);
+          } else {
+            addTerminalLine(item.text, item.type);
+          }
+          
+          currentIndex++;
+          setTimeout(processNextItem, item.delay);
+          
+          // Auto-scroll para o final
+          terminal.scrollTop = terminal.scrollHeight;
+        }
+      }
+      
+      processNextItem();
+    }
+    
+    // Evento de clique na logo
+    logo.addEventListener('click', function(e) {
+      e.preventDefault();
+      terminal.classList.remove('hidden');
+      terminalOutput.innerHTML = ''; // Limpar output anterior
+      
+      // Mostrar o terminal com efeito de fade in
+      setTimeout(() => {
+        terminal.querySelector('.terminal-content').style.opacity = '1';
+      }, 100);
+      
+      // Iniciar a sequência do terminal
+      runTerminalSequence();
+    });
+    
+    // Fechar o terminal
+    closeTerminal.addEventListener('click', function() {
+      terminal.querySelector('.terminal-content').style.opacity = '0';
+      setTimeout(() => {
+        terminal.classList.add('hidden');
+      }, 500);
+    });
+  });
+</script>
+
 </body>
 </html>

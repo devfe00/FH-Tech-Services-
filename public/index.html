@@ -11,129 +11,205 @@
     <script src="script.js" defer></script>
 
     <style>
-
       /* Estilo para o fundo espacial */
       body {
-          margin: 0;
-          padding: 0;
-          background: linear-gradient(125deg, #090322 0%, #1B0E41 28%, #2B0F52 80%, #200C43 100%);
-          overflow-x: hidden;
-          min-height: 100vh;
-          position: relative;
-          font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(125deg, #090322 0%, #1B0E41 28%, #2B0F52 80%, #200C43 100%);
+        overflow-x: hidden;
+        min-height: 100vh;
+        position: relative;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #fff;
       }
-
+    
+      /* Container para as estrelas/meteoros */
       .stars-container {
-          position: fixed;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          z-index: 0;
-          pointer-events: none;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
       }
-
+    
+      /* Estilo para as estrelas */
       .star {
-          position: absolute;
-          background-color: white;
-          border-radius: 50%;
-          opacity: 0;
-          animation: twinkle var(--duration) infinite ease-in-out;
-          animation-delay: var(--delay);
+        position: absolute;
+        background-color: white;
+        border-radius: 50%;
+        opacity: 0;
+        animation: twinkle var(--duration) infinite ease-in-out;
+        animation-delay: var(--delay);
       }
-
+    
+      /* Tamanhos variados para as estrelas */
+      .star.small {
+        width: 0.1vw;
+        height: 0.1vw;
+      }
+    
+      .star.medium {
+        width: 0.2vw;
+        height: 0.2vw;
+      }
+    
+      .star.large {
+        width: 0.3vw;
+        height: 0.3vw;
+      }
+    
+      /* Estilo para os meteoros */
       .meteor {
-          position: absolute;
-          width: 2px;
-          height: 2px;
-          background-color: white;
-          border-radius: 50%;
-          box-shadow: 0 0 10px 1px white, 0 0 20px 2px rgba(255, 255, 255, 0.6);
-          transform: rotate(-45deg);
-          opacity: 0;
+        position: absolute;
+        width: 0.15vw;
+        height: 0.15vw;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 0 0 0.5vw 0.05vw white, 0 0 1vw 0.1vw rgba(255, 255, 255, 0.6);
+        transform: rotate(-45deg);
+        opacity: 0;
       }
-
+    
       .meteor::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100px;
-          height: 1px;
-          background: linear-gradient(to right, white, transparent);
-          transform-origin: left center;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5vw;
+        height: 0.05vw;
+        background: linear-gradient(to right, white, transparent);
+        transform-origin: left center;
       }
-
+    
+      /* Animação para as estrelas brilharem */
       @keyframes twinkle {
-          0%, 100% {
-              opacity: 0.1;
-              transform: scale(0.8);
-          }
-          50% {
-              opacity: 1;
-              transform: scale(1.2);
-          }
+        0%, 100% {
+          opacity: 0.1;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
       }
-
+    
+      /* Animação para os meteoros */
       @keyframes meteor {
-          0% {
-              opacity: 0;
-              transform: translateX(0) translateY(0) rotate(-45deg);
-          }
-          10% {
-              opacity: 1;
-          }
-          80% {
-              opacity: 1;
-          }
-          100% {
-              opacity: 0;
-              transform: translateX(-1000px) translateY(1000px) rotate(-45deg);
-          }
+        0% {
+          opacity: 0;
+          transform: translateX(0) translateY(0) rotate(-45deg);
+        }
+        10% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(-50vw) translateY(50vh) rotate(-45deg);
+        }
       }
-
-      /* Estilo Responsivo para dispositivos móveis */
-      @media (max-width: 768px) {
-          body {
-              padding: 0;
-              font-size: 14px; /* Tamanho de fonte menor para telas pequenas */
-          }
-
-          .stars-container {
-              /* Para evitar que as estrelas sobrecarreguem os celulares */
-              background: transparent;
-          }
-
-          .star {
-              width: 2px;
-              height: 2px;
-          }
-
-          .meteor {
-              width: 1px;
-              height: 1px;
-              box-shadow: 0 0 8px 1px white;
-          }
+    
+      .content {
+        position: relative;
+        z-index: 1;
+        padding: 2vh 4vw;
+        width: 92vw;
+        max-width: 1200px;
+        margin: 0 auto;
       }
-
-      /* Mobile-first adjustments */
-      @media (max-width: 480px) {
-          body {
-              font-size: 12px; /* Tamanho de fonte ainda menor para telas de celulares */
-          }
-
-          .meteor::before {
-              width: 70px;
-              height: 1px;
-          }
-
-          .star {
-              width: 1.5px;
-              height: 1.5px;
-          }
+    
+      /* Estilos para tablets */
+      @media (min-width: 768px) and (max-width: 991px) {
+        .content {
+          padding: 1.5vh 3vw;
+          width: 94vw;
+        }
+        
+        .star.small {
+          width: 0.15vw;
+          height: 0.15vw;
+        }
+        
+        .star.medium {
+          width: 0.25vw;
+          height: 0.25vw;
+        }
+        
+        .star.large {
+          width: 0.35vw;
+          height: 0.35vw;
+        }
       }
+    
+      /* Estilos para dispositivos móveis */
+      @media (max-width: 767px) {
+        body {
+          font-size: 14px;
+        }
+        
+        .stars-container {
+          opacity: 0.6; 
+        }
+        
+        .star {
+          width: 0.2vw;
+          height: 0.2vw;
+        }
+        
+        .meteor {
+          width: 0.1vw;
+          height: 0.1vw;
+          box-shadow: 0 0 0.4vw 0.05vw white, 0 0 0.8vw 0.1vw rgba(255, 255, 255, 0.5);
+        }
+        
+        .meteor::before {
+          width: 4vw;
+          height: 0.05vw;
+        }
+        
+        .content {
+          padding: 1.5vh 5vw;
+          width: 90vw;
+        }
+      }
+    
+      /* Para telas menores que 480px */
+      @media (max-width: 479px) {
+        body {
+          font-size: 13px;
+        }
+        
+        .stars-container {
+          opacity: 0.4; /* Reduzindo ainda mais a opacidade */
+        }
 
-  </style>
+        
+        .star {
+          width: 0.15vw;
+          height: 0.15vw;
+        }
+        
+        .meteor {
+          width: 0.08vw;
+          height: 0.08vw;
+        }
+        
+        .meteor::before {
+          width: 3vw;
+        }
+        
+        .content {
+          padding: 1vh 4vw;
+          width: 92vw;
+        }
+      }
+    </style>
 </head>
 <body>
     <!-- O script vai adicionar o container de estrelas automaticamente -->
@@ -182,65 +258,73 @@
   
   <!-- CSS para os novos elementos --> 
   <style> 
-    @font-face {
-      font-family: 'HackerFont';
-      src: url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/fonts/hack-regular.woff2') format('woff2');
-    }
+  @font-face {
+  font-family: 'HackerFont';
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/fonts/hack-regular.woff2') format('woff2');
+}
     
-    #title, #description {
-      font-family: 'HackerFont', 'Courier New', monospace;
-      position: relative;
-    }
-    
-    #title {
-      letter-spacing: 2px;
-      font-weight: 700;
-      text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
-    }
-    
-    .cursor { 
-      display: inline-block; 
-      width: 5px; 
-      height: 1.2em; 
-      background-color: #00a2ff; 
-      margin-left: 2px; 
-      animation: blink 1s infinite; 
-      vertical-align: text-bottom; 
-    } 
-    
-    .glitch {
-      position: relative;
-      animation: glitch 150ms linear infinite;
-      text-shadow: 0 0 2px rgba(0, 255, 0, 0.8);
-    }
-    
-    /* Botão Glow Neon */
-    #cta-button {
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(0, 162, 255, 0.7),
-                  0 0 20px rgba(0, 162, 255, 0.5),
-                  0 0 30px rgba(0, 162, 255, 0.3);
-    }
-    
-    #cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 15px rgba(0, 162, 255, 0.8),
-                  0 0 30px rgba(0, 162, 255, 0.6),
-                  0 0 45px rgba(0, 162, 255, 0.4);
-    }
-    
-    
-    .counter-box {
-      padding: 50px;
-      border: 1px solid rgba(0, 162, 255, 0.3);
-      border-radius: 8px;
-      background-color: rgba(0, 20, 40, 0.3);
-      min-width: 140px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
+#title, #description {
+  font-family: 'HackerFont', 'Courier New', monospace;
+  position: relative;
+}
 
-    
+#title {
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
+  font-size: clamp(1.8rem, 5vw, 3.5rem); /* Tamanho responsivo */
+}
+
+#description {
+  font-size: clamp(1rem, 3vw, 1.2rem); /* Tamanho responsivo */
+  max-width: 90vw; /* Limita largura em dispositivos móveis */
+  margin: 0 auto;
+}
+
+.cursor { 
+  display: inline-block; 
+  width: 5px; 
+  height: 1.2em; 
+  background-color: #00a2ff; 
+  margin-left: 2px; 
+  animation: blink 1s infinite; 
+  vertical-align: text-bottom; 
+} 
+
+.glitch {
+  position: relative;
+  animation: glitch 150ms linear infinite;
+  text-shadow: 0 0 2px rgba(0, 255, 0, 0.8);
+}
+
+/* Botão Glow Neon */
+#cta-button {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 162, 255, 0.7),
+              0 0 20px rgba(0, 162, 255, 0.5),
+              0 0 30px rgba(0, 162, 255, 0.3);
+  padding: clamp(0.5rem, 3vw, 1rem) clamp(1rem, 5vw, 2rem); /* Padding responsivo */
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Tamanho de fonte responsivo */
+}
+
+#cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(0, 162, 255, 0.8),
+              0 0 30px rgba(0, 162, 255, 0.6),
+              0 0 45px rgba(0, 162, 255, 0.4);
+}
+
+.counter-box {
+  padding: min(50px, 8vw); /* Padding responsivo */
+  border: 1px solid rgba(0, 162, 255, 0.3);
+  border-radius: 8px;
+  background-color: rgba(0, 20, 40, 0.3);
+  min-width: clamp(100px, 30vw, 140px); /* Largura mínima responsiva */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0.5rem; /* Adiciona margem para espaçamento em layouts móveis */
+}
+
 .counter-box:hover {
   transform: translateY(-5px);
   background-color: rgba(0, 30, 60, 0.5);
@@ -248,105 +332,169 @@
   box-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
 }
 
-
 .counter-box:hover span {
   transform: scale(1.1);
   text-shadow: 0 0 8px rgba(0, 162, 255, 0.8);
 }
 
-
 .counter-box span {
   transition: all 0.3s ease;
   display: block;
+  font-size: clamp(0.9rem, 4vw, 1.2rem); /* Tamanho da fonte responsivo */
 }
 
+.counter-number {
+  font-size: clamp(1.5rem, 6vw, 2.5rem); /* Tamanho responsivo para números */
+}
 
+/* Ajuste na flexbox que contém os counter-boxes */
 .flex.justify-center.gap-6.mt-6 {
-  gap: 2rem; 
+  gap: clamp(1rem, 3vw, 2rem); /* Gap responsivo */
+  flex-wrap: wrap; /* Permite que os itens quebrem em telas menores */
+  justify-content: center;
+  margin-top: clamp(1.5rem, 5vh, 3rem); /* Margem superior responsiva */
 }
-    
-    /* Estilos para o scroll down icon */
-    .scroll-down-icon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .mouse {
-      width: 30px;
-      height: 50px;
-      border: 2px solid rgba(0, 162, 255, 0.8);
-      border-radius: 15px;
-      position: relative;
-    }
-    
-    .wheel {
-      width: 4px;
-      height: 8px;
-      background-color: rgba(0, 162, 255, 1);
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 2px;
-      animation: scroll 1.5s infinite;
-    }
-    
-    .arrows {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 8px;
-    }
-    
-    .arrow-down {
-      width: 15px;
-      height: 15px;
-      border-right: 2px solid rgba(0, 162, 255, 0.8);
-      border-bottom: 2px solid rgba(0, 162, 255, 0.8);
-      transform: rotate(45deg);
-      margin: -7px 0;
-      animation: arrow 1.5s infinite;
-    }
-    
-    .arrow-down:nth-child(2) {
-      animation-delay: 0.3s;
-    }
-    
-    /* Animações */
-    @keyframes blink { 
-      0%, 100% { opacity: 1; } 
-      50% { opacity: 0; } 
-    } 
-    
-    @keyframes glitch {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(1px); }
-      50% { transform: translateX(0); }
-      75% { transform: translateX(-1px); }
-      100% { transform: translateX(0); }
-    }
-    
-    @keyframes scroll {
-      0% { top: 10px; opacity: 1; }
-      100% { top: 30px; opacity: 0; }
-    }
-    
-    @keyframes arrow {
-      0% { opacity: 0; }
-      50% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-    
-    /* Partículas */
-    .particle {
-      position: absolute;
-      background-color: rgba(0, 162, 255, 0.7);
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      pointer-events: none;
-    }
+
+/* Estilos para o scroll down icon */
+.scroll-down-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(2rem, 8vh, 4rem); /* Margem superior responsiva */
+  margin-bottom: clamp(1rem, 5vh, 2rem); /* Margem inferior responsiva */
+}
+
+.mouse {
+  width: clamp(20px, 6vw, 30px); /* Largura responsiva */
+  height: clamp(35px, 10vw, 50px); /* Altura responsiva */
+  border: 2px solid rgba(0, 162, 255, 0.8);
+  border-radius: 15px;
+  position: relative;
+}
+
+.wheel {
+  width: clamp(3px, 1vw, 4px); /* Largura responsiva */
+  height: clamp(6px, 2vw, 8px); /* Altura responsiva */
+  background-color: rgba(0, 162, 255, 1);
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  animation: scroll 1.5s infinite;
+}
+
+.arrows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(5px, 2vw, 8px); /* Margem superior responsiva */
+}
+
+.arrow-down {
+  width: clamp(10px, 3vw, 15px); /* Largura responsiva */
+  height: clamp(10px, 3vw, 15px); /* Altura responsiva */
+  border-right: 2px solid rgba(0, 162, 255, 0.8);
+  border-bottom: 2px solid rgba(0, 162, 255, 0.8);
+  transform: rotate(45deg);
+  margin: -7px 0;
+  animation: arrow 1.5s infinite;
+}
+
+.arrow-down:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+/* Media queries para ajustes específicos em diferentes tamanhos de tela */
+@media (max-width: 768px) {
+  /* Ajustes para tablets */
+  .flex.justify-center.gap-6.mt-6 {
+    gap: 1rem;
+  }
+  
+  .counter-box {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustes para smartphones */
+  .flex.justify-center.gap-6.mt-6 {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .counter-box {
+    width: 80%;
+    padding: 25px;
+    margin-bottom: 1rem;
+  }
+  
+  #title {
+    padding: 0 10px;
+  }
+  
+  #description {
+    padding: 0 15px;
+    text-align: center;
+  }
+}
+
+/* Ajustes para altura de viewport (vh) */
+.hero-section {
+  height: 100vh; /* VH para altura da viewport em desktop */
+  height: 100dvh; /* DVH para altura dinâmica da viewport em mobile */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.section {
+  height: 100vh; /* VH para altura da viewport em desktop */
+  height: 100dvh; /* DVH para altura dinâmica da viewport em mobile */
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Animações */
+@keyframes blink { 
+  0%, 100% { opacity: 1; } 
+  50% { opacity: 0; } 
+} 
+
+@keyframes glitch {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(1px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes scroll {
+  0% { top: 10px; opacity: 1; }
+  100% { top: 30px; opacity: 0; }
+}
+
+@keyframes arrow {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Partículas */
+.particle {
+  position: absolute;
+  background-color: rgba(0, 162, 255, 0.7);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+}
   </style> 
   
   <script> 
@@ -940,6 +1088,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         
         // Redirecionar para WhatsApp
         window.open(whatsappLink, '_blank');
+
         this.reset();
     }, 800);
 });

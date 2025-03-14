@@ -7,17 +7,20 @@ body {
   min-height: 100vh;
   position: relative;
   font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #fff;
 }
 
 /* Container para as estrelas/meteoros */
 .stars-container {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   top: 0;
   left: 0;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 /* Estilo para as estrelas */
@@ -30,14 +33,30 @@ body {
   animation-delay: var(--delay);
 }
 
+/* Tamanhos variados para as estrelas */
+.star.small {
+  width: 0.1vw;
+  height: 0.1vw;
+}
+
+.star.medium {
+  width: 0.2vw;
+  height: 0.2vw;
+}
+
+.star.large {
+  width: 0.3vw;
+  height: 0.3vw;
+}
+
 /* Estilo para os meteoros */
 .meteor {
   position: absolute;
-  width: 2px;
-  height: 2px;
+  width: 0.15vw;
+  height: 0.15vw;
   background-color: white;
   border-radius: 50%;
-  box-shadow: 0 0 10px 1px white, 0 0 20px 2px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 0.5vw 0.05vw white, 0 0 1vw 0.1vw rgba(255, 255, 255, 0.6);
   transform: rotate(-45deg);
   opacity: 0;
 }
@@ -47,8 +66,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100px;
-  height: 1px;
+  width: 5vw;
+  height: 0.05vw;
   background: linear-gradient(to right, white, transparent);
   transform-origin: left center;
 }
@@ -57,35 +76,39 @@ body {
 .content {
   position: relative;
   z-index: 1;
+  padding: 2vh 4vw;
+  width: 92vw;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Animação para as estrelas brilharem */
 @keyframes twinkle {
   0%, 100% {
-      opacity: 0.1;
-      transform: scale(0.8);
+    opacity: 0.1;
+    transform: scale(0.8);
   }
   50% {
-      opacity: 1;
-      transform: scale(1.2);
+    opacity: 1;
+    transform: scale(1.2);
   }
 }
 
 /* Animação para os meteoros */
 @keyframes meteor {
   0% {
-      opacity: 0;
-      transform: translateX(0) translateY(0) rotate(-45deg);
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-45deg);
   }
   10% {
-      opacity: 1;
+    opacity: 1;
   }
   80% {
-      opacity: 1;
+    opacity: 1;
   }
   100% {
-      opacity: 0;
-      transform: translateX(-1000px) translateY(1000px) rotate(-45deg);
+    opacity: 0;
+    transform: translateX(-50vw) translateY(50vh) rotate(-45deg);
   }
 }
 
@@ -95,21 +118,30 @@ body {
   justify-content: center;
   align-items: center;
   background: #fff;
-  padding: 10px;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  margin-bottom: 16px;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
+  transition: all 0.3s ease;
+}
+
+.service-card {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease-in-out;
 }
 
 .service-card:hover .icon-container {
-  background-color: rgba(255, 255, 255, 0.2); /* Efeito de hover para o ícone */
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .service-card:hover {
-  transform: translateY(-5px); /* Levanta o card no hover */
+  transform: translateY(-0.5vh);
 }
 
 /* Efeito visual para o texto */
@@ -118,7 +150,7 @@ body {
 }
 
 .service-card:hover h3, .service-card:hover p {
-  transform: translateX(5px); /* Transição do texto para a direita no hover */
+  transform: translateX(0.5vw);
 }
 
 /* Animação do texto */
@@ -142,13 +174,13 @@ body {
 /* Efeito de fade in e fade out para os textos */
 @keyframes fadeInOut {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
   50% {
-      opacity: 1;
+    opacity: 1;
   }
   100% {
-      opacity: 0;
+    opacity: 0;
   }
 }
 
@@ -156,6 +188,11 @@ body {
 .benefit-card {
   position: relative;
   transition: transform 0.3s ease-in-out;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
 }
 
 .benefit-card:hover {
@@ -165,37 +202,43 @@ body {
 /* Estilizando a seção */
 #beneficios {
   background: linear-gradient(145deg, #180A3A, #240F50);
+  padding: 4vh 0;
+  width: 100%;
 }
 
 /* Animação de entrada */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(2vh);
   animation: fadeInUp 1s ease-in-out forwards;
 }
 
 /* Estilo dos Cards */
 .card {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
   text-align: center;
   transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(5px);
 }
 
 .card i {
   color: #FFD700;
-  margin-bottom: 10px;
+  margin-bottom: 0.75rem;
+  font-size: 2rem;
 }
 
 .card h3 {
   font-size: 1.5rem;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 0.75rem 0;
 }
 
 .card p {
   color: #ddd;
+  line-height: 1.5;
 }
 
 /* Efeito ao passar o mouse */
@@ -206,128 +249,157 @@ body {
 /* Animação fade-in */
 @keyframes fadeInUp {
   from {
-      opacity: 0;
-      transform: translateY(20px);
+    opacity: 0;
+    transform: translateY(2vh);
   }
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Estilizando a seção */
-#beneficios {
-background: linear-gradient(145deg, #180A3A, #240F50);
+/* Grid sistema simples */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1rem;
 }
 
-/* Animação de entrada */
-.fade-in {
-opacity: 0;
-transform: translateY(20px);
-animation: fadeInUp 1s ease-in-out forwards;
+.col {
+  flex: 1 0 100%;
+  padding: 0 1rem;
 }
 
-/* Estilo dos Cards */
-.card {
-background: rgba(255, 255, 255, 0.1);
-border-radius: 12px;
-padding: 20px;
-text-align: center;
-transition: transform 0.3s ease;
+/* Estilos para tablets */
+@media (min-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
+  .col-md-4 {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+  
+  .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
 }
 
-.card i {
-color: #FFD700;
-margin-bottom: 10px;
-}
-
-.card h3 {
-font-size: 1.5rem;
-font-weight: bold;
-margin: 10px 0;
-}
-
-.card p {
-color: #ddd;
-}
-
-/* Efeito ao passar o mouse */
-.card:hover {
-transform: scale(1.05);
-}
-
-/* Animação fade-in */
-@keyframes fadeInUp {
-from {
-    opacity: 0;
-    transform: translateY(20px);
-}
-to {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* Estilos para desktops */
+@media (min-width: 992px) {
+  .col-lg-4 {
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
+  }
+  
+  .col-lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
 }
 
 /* Estilos para dispositivos móveis */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   body {
-      padding: 0;
-      font-size: 14px; /* Ajustando o tamanho da fonte para telas pequenas */
+    font-size: 14px;
   }
-
-  .stars-container {
-      /* Ajustando o fundo das estrelas para não sobrecarregar o celular */
-      background: transparent;
-  }
-
-  .star {
-      width: 2px;
-      height: 2px;
-  }
-
-  .meteor {
-      width: 1px;
-      height: 1px;
-      box-shadow: 0 0 8px 1px white;
-  }
-
-  .content {
-      padding: 10px;
-  }
-
-  /* Ajustando os ícones e cards */
+  
   .icon-container {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 12px;
+    width: 3rem;
+    height: 3rem;
   }
-
+  
   .service-card {
-      margin: 0 10px;
+    padding: 1rem;
   }
-
+  
+  .stars-container {
+    opacity: 0.6; /* Reduzindo a opacidade para melhorar performance */
+  }
+  
+  .star.small, .star.medium {
+    width: 0.15vw;
+    height: 0.15vw;
+  }
+  
+  .star.large {
+    width: 0.2vw;
+    height: 0.2vw;
+  }
+  
+  .meteor {
+    width: 0.1vw;
+    height: 0.1vw;
+  }
+  
+  .meteor::before {
+    width: 3vw;
+  }
+  
+  .content {
+    padding: 1.5vh 5vw;
+    width: 90vw;
+  }
+  
   .card {
-      padding: 15px;
+    padding: 1rem;
   }
-
-  /* Diminuindo a largura dos cards de benefícios */
-  .benefit-card {
-      width: 100%;
+  
+  .card i {
+    font-size: 1.5rem;
+  }
+  
+  .card h3 {
+    font-size: 1.25rem;
   }
 }
 
 /* Para telas menores que 480px */
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   body {
-      font-size: 12px; /* Ajustando ainda mais a fonte */
+    font-size: 13px;
   }
-
-  .meteor::before {
-      width: 70px;
+  
+  .icon-container {
+    width: 2.5rem;
+    height: 2.5rem;
   }
-
-  .star {
-      width: 1.5px;
-      height: 1.5px;
+  
+  .stars-container {
+    opacity: 0.4; /* Reduzindo ainda mais a opacidade */
+  }
+  
+  /* Reduzindo o número de animações para melhorar performance */
+  .star:nth-child(odd) {
+    display: none;
+  }
+  
+  .content {
+    padding: 1vh 4vw;
+    width: 92vw;
+  }
+  
+  .card {
+    padding: 0.75rem;
+  }
+  
+  .card i {
+    font-size: 1.25rem;
+  }
+  
+  .card h3 {
+    font-size: 1.1rem;
+  }
+  
+  /* Simplificando algumas animações */
+  .service-card:hover h3, .service-card:hover p {
+    transform: none;
+  }
+  
+  .benefit-card:hover {
+    transform: none;
   }
 }

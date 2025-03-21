@@ -11,7 +11,7 @@
     <script src="script.js" defer></script>
 
     <style>
-      /* Estilo para o fundo espacial */
+
       body {
         margin: 0;
         padding: 0;
@@ -35,8 +35,8 @@
         pointer-events: none;
         overflow: hidden;
       }
-    
-      /* Estilo para as estrelas */
+
+
       .star {
         position: absolute;
         background-color: white;
@@ -45,8 +45,8 @@
         animation: twinkle var(--duration) infinite ease-in-out;
         animation-delay: var(--delay);
       }
-    
-      /* Tamanhos variados para as estrelas */
+
+
       .star.small {
         width: 0.1vw;
         height: 0.1vw;
@@ -62,7 +62,7 @@
         height: 0.3vw;
       }
     
-      /* Estilo para os meteoros */
+
       .meteor {
         position: absolute;
         width: 0.15vw;
@@ -124,7 +124,7 @@
         margin: 0 auto;
       }
     
-      /* Estilos para tablets */
+
       @media (min-width: 768px) and (max-width: 991px) {
         .content {
           padding: 1.5vh 3vw;
@@ -147,7 +147,7 @@
         }
       }
     
-      /* Estilos para dispositivos móveis */
+
       @media (max-width: 767px) {
         body {
           font-size: 14px;
@@ -179,14 +179,14 @@
         }
       }
     
-      /* Para telas menores que 480px */
+
       @media (max-width: 479px) {
         body {
           font-size: 13px;
         }
         
         .stars-container {
-          opacity: 0.4; /* Reduzindo ainda mais a opacidade */
+          opacity: 0.4; 
         }
 
         
@@ -212,409 +212,425 @@
     </style>
 </head>
 <body>
-    <!-- O script vai adicionar o container de estrelas automaticamente -->
 
-    <!-- Primeira Camada: Introdução -->
-    <header class="h-screen flex flex-col items-center justify-center text-center px-6 relative z-10"> 
+
+<!-- Primeira Camada: Introdução -->
+<header class="h-screen flex flex-col items-center justify-center text-center px-6 relative z-10"> 
+
+
+  <div class="logo-container absolute top-4 left-4 z-20">
+    <div class="logo-glow"></div>
+    <img src="img/a.WEBP" alt="FH Tech Logo" class="w-16 h-auto logo-float relative z-10"> 
+  </div>
+
+  <div class="content-container mt-20 z-10 px-6">
+    <h1 id="title" class="text-5xl font-bold text-white"></h1> 
    
-      <!-- Logo movida para o canto superior esquerdo com luz azul -->
-      <div class="logo-container absolute top-4 left-4 z-20">
-        <div class="logo-glow"></div>
-        <img src="img/a.WEBP" alt="FH Tech Logo" class="w-20 h-auto logo-float relative z-10"> 
+    <p id="description" class="text-lg mt-4 text-white"></p>
+  </div>
+  
+  <!-- Contadores -->
+  <div class="flex justify-center gap-6 mt-6">
+    <div class="counter-box">
+        <span id="projectsCounter" class="font-bold text-blue-400">0</span>
+        <span class="text-white text-sm">Projetos Entregues</span>
+    </div>
+    <div class="counter-box">
+        <span id="clientsCounter" class="font-bold text-blue-400">0</span>
+        <span class="text-white text-sm">Clientes Felizes</span>
+    </div>
+    <div class="counter-box">
+        <span id="experienceCounter" class="font-bold text-blue-400">0</span>
+        <span class="text-white text-sm">Anos de Experiência</span>
+    </div>
+  </div>
+  
+  <!-- Botão com Glow Neon --> 
+  <button id="cta-button" class="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg relative overflow-hidden" onclick="window.location.href='funcionalidades.html'"> 
+    <span class="relative z-10">Saiba Mais</span>
+    <div id="particles-container" class="absolute inset-0 z-0"></div>
+  </button>
+
+
+  <div class="scroll-down-icon absolute bottom-10">
+      <div class="mouse">
+          <div class="wheel"></div>
       </div>
-     
-      <h1 id="title" class="text-5xl font-bold text-white"></h1> 
-      
-      <p id="description" class="text-lg mt-4 text-white"></p>
-      
-      <!-- Contadores -->
-      <div class="flex justify-center gap-6 mt-6">
-        <div class="counter-box">
-            <span id="projectsCounter" class="font-bold text-blue-400">0</span>
-            <p class="text-white text-sm">Projetos Entregues</p>
-        </div>
-        <div class="counter-box">
-            <span id="clientsCounter" class="font-bold text-blue-400">0</span>
-            <p class="text-white text-sm">Clientes Felizes</p>
-        </div>
-        <div class="counter-box">
-            <span id="experienceCounter" class="font-bold text-blue-400">0</span>
-            <p class="text-white text-sm">Anos de Experiência</p>
-        </div>
+      <div class="arrows">
+          <span class="arrow-down"></span>
+          <span class="arrow-down"></span>
       </div>
-      
-    <!-- Botão com Glow Neon --> 
-    <button id="cta-button" class="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg relative overflow-hidden" onclick="window.location.href='calculadora.html'"> 
-      <span class="relative z-10">Saiba Mais</span>
-      <div id="particles-container" class="absolute inset-0 z-0"></div>
-    </button>
-      
-      <!-- Ícone de scroll down -->
-      <div class="scroll-down-icon absolute bottom-10">
-          <div class="mouse">
-              <div class="wheel"></div>
-          </div>
-          <div class="arrows">
-              <span class="arrow-down"></span>
-              <span class="arrow-down"></span>
-          </div>
-      </div>
-      
-      <!-- CSS para os novos elementos --> 
-      <style> 
-      @font-face {
-        font-family: 'HackerFont';
-        src: url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/fonts/hack-regular.woff2') format('woff2');
-      }
-        
-      /* Estilos para o logo no canto superior esquerdo com luz azul */
-      .logo-container {
-        position: fixed;
-        width: 80px;
-        height: 80px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    
-      .logo-float {
-        animation: float 3s ease-in-out infinite;
-        width: 100%;
-        height: auto;
-      }
-    
-      .logo-glow {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(0, 162, 255, 0.7) 0%, rgba(0, 162, 255, 0) 70%);
-        border-radius: 50%;
-        z-index: 0;
-        animation: pulse 3s ease-in-out infinite;
-      }
-    
-      @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0px); }
-      }
-    
-      @keyframes pulse {
-        0% { opacity: 0.5; transform: scale(0.8); }
-        50% { opacity: 0.8; transform: scale(1.2); }
-        100% { opacity: 0.5; transform: scale(0.8); }
-      }
+  </div>
+  
+  <!-- CSS para os novos elementos --> 
+  <style> 
+  @font-face {
+    font-family: 'HackerFont';
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/fonts/hack-regular.woff2') format('woff2');
+  }
 
-#title, #description {
-  font-family: 'HackerFont', 'Courier New', monospace;
-  position: relative;
-}
 
-#title {
-  letter-spacing: 2px;
-  font-weight: 700;
-  text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
-  font-size: clamp(1.8rem, 5vw, 3.5rem); 
-}
+  .logo-container {
+    position: fixed;
+    width: 60px;
+    height: 60px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-#description {
-  font-size: clamp(1rem, 3vw, 1.2rem); 
-  max-width: 90vw; 
-  margin: 0 auto;
-}
+  .logo-float {
+    animation: float 3s ease-in-out infinite;
+    width: 100%;
+    height: auto;
+  }
 
-.cursor { 
-  display: inline-block; 
-  width: 5px; 
-  height: 1.2em; 
-  background-color: #00a2ff; 
-  margin-left: 2px; 
-  animation: blink 1s infinite; 
-  vertical-align: text-bottom; 
-} 
+  .logo-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 162, 255, 0.7) 0%, rgba(0, 162, 255, 0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+    animation: pulse 3s ease-in-out infinite;
+  }
 
-.glitch {
-  position: relative;
-  animation: glitch 150ms linear infinite;
-  text-shadow: 0 0 2px rgba(0, 255, 0, 0.8);
-}
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
 
-/* Botão Glow Neon */
-#cta-button {
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 162, 255, 0.7),
-              0 0 20px rgba(0, 162, 255, 0.5),
-              0 0 30px rgba(0, 162, 255, 0.3);
-  padding: clamp(0.5rem, 3vw, 1rem) clamp(1rem, 5vw, 2rem); 
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem); 
-}
+  @keyframes pulse {
+    0% { opacity: 0.5; transform: scale(0.8); }
+    50% { opacity: 0.8; transform: scale(1.2); }
+    100% { opacity: 0.5; transform: scale(0.8); }
+  }
 
-#cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 15px rgba(0, 162, 255, 0.8),
-              0 0 30px rgba(0, 162, 255, 0.6),
-              0 0 45px rgba(0, 162, 255, 0.4);
-}
-
-.counter-box {
-  padding: min(50px, 8vw); 
-  border: 1px solid rgba(0, 162, 255, 0.3);
-  border-radius: 8px;
-  background-color: rgba(0, 20, 40, 0.3);
-  min-width: clamp(100px, 30vw, 140px);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  margin: 0.5rem; 
-}
-
-.counter-box:hover {
-  transform: translateY(-5px);
-  background-color: rgba(0, 30, 60, 0.5);
-  border-color: rgba(0, 162, 255, 0.8);
-  box-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
-}
-
-.counter-box:hover span {
-  transform: scale(1.1);
-  text-shadow: 0 0 8px rgba(0, 162, 255, 0.8);
-}
-
-.counter-box span {
-  transition: all 0.3s ease;
-  display: block;
-  font-size: clamp(0.9rem, 4vw, 1.2rem);
-}
-
-.counter-number {
-  font-size: clamp(1.5rem, 6vw, 2.5rem); 
-}
-
-/* Ajuste na flexbox que contém os counter-boxes */
-.flex.justify-center.gap-6.mt-6 {
-  gap: clamp(1rem, 3vw, 2rem); 
-  flex-wrap: wrap; 
-  justify-content: center;
-  margin-top: clamp(1.5rem, 5vh, 3rem);
-}
-
-/* Estilos para o scroll down icon */
-.scroll-down-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: clamp(2rem, 8vh, 4rem); 
-  margin-bottom: clamp(1rem, 5vh, 2rem); 
-}
-
-.mouse {
-  width: clamp(20px, 6vw, 30px); 
-  height: clamp(35px, 10vw, 50px); 
-  border: 2px solid rgba(0, 162, 255, 0.8);
-  border-radius: 15px;
-  position: relative;
-}
-
-.wheel {
-  width: clamp(3px, 1vw, 4px); 
-  height: clamp(6px, 2vw, 8px); 
-  background-color: rgba(0, 162, 255, 1);
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 2px;
-  animation: scroll 1.5s infinite;
-}
-
-.arrows {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: clamp(5px, 2vw, 8px);
-}
-
-.arrow-down {
-  width: clamp(10px, 3vw, 15px); 
-  height: clamp(10px, 3vw, 15px); 
-  border-right: 2px solid rgba(0, 162, 255, 0.8);
-  border-bottom: 2px solid rgba(0, 162, 255, 0.8);
-  transform: rotate(45deg);
-  margin: -7px 0;
-  animation: arrow 1.5s infinite;
-}
-
-.arrow-down:nth-child(2) {
-  animation-delay: 0.3s;
-}
-
-/* Mantém o design original para todos os dispositivos */
-.scroll-down-icon {
-  position: absolute;
-  bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.mouse {
-  width: clamp(20px, 6vw, 30px);
-  height: clamp(35px, 10vw, 50px);
-  border: 2px solid rgba(0, 162, 255, 0.8);
-  border-radius: 15px;
-  position: relative;
-}
-
-#cta-button {
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(0, 162, 255, 0.7),
-              0 0 20px rgba(0, 162, 255, 0.5),
-              0 0 30px rgba(0, 162, 255, 0.3);
-  padding: clamp(0.5rem, 3vw, 1rem) clamp(1rem, 5vw, 2rem);
-  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-}
-
-#cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 15px rgba(0, 162, 255, 0.8),
-              0 0 30px rgba(0, 162, 255, 0.6),
-              0 0 45px rgba(0, 162, 255, 0.4);
-}
-
-/* mobile */
-@media screen and (max-width: 767px) {
-  .scroll-down-icon {
+  .content-container {
+    width: 100%;
+    max-width: 1200px;
     position: relative;
-    bottom: auto;
-    margin-top: 2rem;
-    margin-bottom: 4rem;
   }
-  
+
+  #title, #description {
+    font-family: 'HackerFont', 'Courier New', monospace;
+    position: relative;
+  }
+
+  #title {
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
+    font-size: clamp(1.8rem, 5vw, 3.5rem); 
+  }
+
+  #description {
+    font-size: clamp(1rem, 3vw, 1.2rem); 
+    max-width: 90vw; 
+    margin: 0 auto;
+  }
+
+  .cursor { 
+    display: inline-block; 
+    width: 5px; 
+    height: 1.2em; 
+    background-color: #00a2ff; 
+    margin-left: 2px; 
+    animation: blink 1s infinite; 
+    vertical-align: text-bottom; 
+  } 
+
+  .glitch {
+    position: relative;
+    animation: glitch 150ms linear infinite;
+    text-shadow: 0 0 2px rgba(0, 255, 0, 0.8);
+  }
+
+  /* Botão Glow Neon */
   #cta-button {
-    width: 80%;
-    max-width: 250px;
-    margin-left: auto;
-    margin-right: auto;
-    overflow: visible;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 162, 255, 0.7),
+                0 0 20px rgba(0, 162, 255, 0.5),
+                0 0 30px rgba(0, 162, 255, 0.3);
+    padding: clamp(0.5rem, 3vw, 1rem) clamp(1rem, 5vw, 2rem); 
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem); 
   }
-}
 
-/* Media queries para ajustes específicos em diferentes tamanhos de tela */
-@media (max-width: 768px) {
-  /* Ajustes para tablets */
-  .flex.justify-center.gap-6.mt-6 {
-    gap: 1rem;
+  #cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 162, 255, 0.8),
+                0 0 30px rgba(0, 162, 255, 0.6),
+                0 0 45px rgba(0, 162, 255, 0.4);
   }
-  
+
   .counter-box {
-    padding: 30px;
+    padding: min(30px, 8vw); 
+    border: 1px solid rgba(0, 162, 255, 0.3);
+    border-radius: 8px;
+    background-color: rgba(0, 20, 40, 0.3);
+    min-width: clamp(80px, 25vw, 120px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0.5rem; 
   }
-}
 
-@media (max-width: 480px) {
-  /* Ajustes para smartphones */
+  .counter-box:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 30, 60, 0.5);
+    border-color: rgba(0, 162, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
+  }
+
+  .counter-box:hover span {
+    transform: scale(1.1);
+    text-shadow: 0 0 8px rgba(0, 162, 255, 0.8);
+  }
+
+  .counter-box span {
+    transition: all 0.3s ease;
+    display: block;
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+  }
+
+
+
+  /* Ajuste na flexbox que contém os counter-boxes */
   .flex.justify-center.gap-6.mt-6 {
+    gap: clamp(0.5rem, 2vw, 1.5rem); 
+    flex-wrap: wrap; 
+    justify-content: center;
+    margin-top: clamp(1.5rem, 5vh, 3rem);
+  }
+
+
+  .scroll-down-icon {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    margin-top: clamp(2rem, 8vh, 4rem); 
+    margin-bottom: clamp(1rem, 5vh, 2rem); 
   }
+
+  .mouse {
+    width: clamp(20px, 6vw, 30px); 
+    height: clamp(35px, 10vw, 50px); 
+    border: 2px solid rgba(0, 162, 255, 0.8);
+    border-radius: 15px;
+    position: relative;
+  }
+
+  .wheel {
+    width: clamp(3px, 1vw, 4px); 
+    height: clamp(6px, 2vw, 8px); 
+    background-color: rgba(0, 162, 255, 1);
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    animation: scroll 1.5s infinite;
+  }
+
+  .arrows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: clamp(5px, 2vw, 8px);
+  }
+
+  .arrow-down {
+    width: clamp(10px, 3vw, 15px); 
+    height: clamp(10px, 3vw, 15px); 
+    border-right: 2px solid rgba(0, 162, 255, 0.8);
+    border-bottom: 2px solid rgba(0, 162, 255, 0.8);
+    transform: rotate(45deg);
+    margin: -7px 0;
+    animation: arrow 1.5s infinite;
+  }
+
+  .arrow-down:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
   
-  .counter-box {
-    width: 80%;
-    padding: 25px;
-    margin-bottom: 1rem;
+  .scroll-down-icon {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
+
+
+  #cta-button {
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 162, 255, 0.7),
+                0 0 20px rgba(0, 162, 255, 0.5),
+                0 0 30px rgba(0, 162, 255, 0.3);
+    padding: clamp(0.5rem, 3vw, 1rem) clamp(1rem, 5vw, 2rem);
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  }
+
+  #cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 162, 255, 0.8),
+                0 0 30px rgba(0, 162, 255, 0.6),
+                0 0 45px rgba(0, 162, 255, 0.4);
+  }
+
+  /* Ajustes específicos para mobile */
+  @media screen and (max-width: 767px) {
+    .content-container {
+      margin-top: 80px;
+      margin-left: 70px; 
+      margin-right: 10px;
+      width: calc(100% - 80px);
+    }
+    
+    #title, #description {
+      text-align: left; 
+      width: 100%;
+    }
+    
+    .logo-container {
+      top: 10px;
+      left: 10px;
+      width: 50px;
+      height: 50px;
+    }
+    
+    .scroll-down-icon {
+      position: relative;
+      bottom: auto;
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    #cta-button {
+      width: 80%;
+      max-width: 250px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: visible;
+    }
+    
+    .flex.justify-center.gap-6.mt-6 {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .counter-box {
+      width: 90%;
+      max-width: 220px;
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .content-container {
+      margin-top: 30px;
+      padding: 0 20px;
+    }
+    
+    .logo-container {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  @media (min-width: 1024px) {
   
-  #title {
-    padding: 0 10px;
+    .content-container {
+      margin-top: 0;
+    }
+    
+    #title, #description {
+      text-align: center;
+    }
   }
-  
-  #description {
-    padding: 0 15px;
-    text-align: center;
+
+
+  .hero-section {
+    height: 100vh; 
+    height: 100dvh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
   }
-}
 
-/* Ajustes para altura de viewport (vh) */
-.hero-section {
-  height: 100vh; 
-  height: 100dvh; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 1rem;
-}
+  .section {
+    height: 100vh; 
+    height: 100dvh; 
+    padding: 4rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-.section {
-  height: 100vh; 
-  height: 100dvh; 
-  padding: 4rem 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  /* Animações */
+  @keyframes blink { 
+    0%, 100% { opacity: 1; } 
+    50% { opacity: 0; } 
+  } 
 
-/* Animações */
-@keyframes blink { 
-  0%, 100% { opacity: 1; } 
-  50% { opacity: 0; } 
-} 
+  @keyframes glitch {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(1px); }
+    50% { transform: translateX(0); }
+    75% { transform: translateX(-1px); }
+    100% { transform: translateX(0); }
+  }
 
-@keyframes glitch {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(1px); }
-  50% { transform: translateX(0); }
-  75% { transform: translateX(-1px); }
-  100% { transform: translateX(0); }
-}
+  @keyframes scroll {
+    0% { top: 10px; opacity: 1; }
+    100% { top: 30px; opacity: 0; }
+  }
 
-@keyframes scroll {
-  0% { top: 10px; opacity: 1; }
-  100% { top: 30px; opacity: 0; }
-}
+  @keyframes arrow {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
 
-@keyframes arrow {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
-}
+  /* Partículas */
+  .particle {
+    position: absolute;
+    background-color: rgba(0, 162, 255, 0.7);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
 
-/* Partículas */
-.particle {
-  position: absolute;
-  background-color: rgba(0, 162, 255, 0.7);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  pointer-events: none;
-}
 
-/* Ajustando os tamanhos dos números */
-#projectsCounter,
-#clientsCounter,
-#experienceCounter {
-  font-size: 2.5rem; 
-}
-
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
   #projectsCounter,
   #clientsCounter,
   #experienceCounter {
-    font-size: 2rem;
+    font-size: 2.2rem; 
   }
-}
 
-@media (max-width: 480px) {
-  #projectsCounter,
-  #clientsCounter,
-  #experienceCounter {
-    font-size: 1.8rem;
+
+  @media (max-width: 768px) {
+    #projectsCounter,
+    #clientsCounter,
+    #experienceCounter {
+      font-size: 1.8rem;
+    }
   }
-}
 
-  </style> 
-  
+  @media (max-width: 480px) {
+    #projectsCounter,
+    #clientsCounter,
+    #experienceCounter {
+      font-size: 1.6rem;
+    }
+  }
+  </style>
+
   <script> 
     // segredo?
     console.log("%c Você é um dev? Vem trabalhar com a FlyHigh Tech!", "color: #00a2ff; font-size: 20px; font-weight: bold; text-shadow: 0 0 5px rgba(0,162,255,0.5);");
@@ -900,9 +916,10 @@
     
     <!-- Terceira Camada: Benefícios e Diferenciais -->
     <section class="py-16 text-center bg-transparent relative z-10">
-      <h2 class="text-3xl font-bold text-white mb-8 animate-fade-in whitespace-nowrap">
-        Por que escolher a <span class="text-blue-400">FlyHigh Tech</span>?
-    </h2>
+      <h2 class="text-3xl font-bold text-white mb-8 animate-fade-in whitespace-nowrap flex justify-center items-center">
+        Por que escolher a <span class="text-blue-400">&nbsp;FlyHigh Tech</span>?
+      </h2>
+      
         <p class="text-white text-lg mb-6 animate-fade-in delay-200">
             Design inovador, tecnologia de ponta e experiência de usuário aprimorada.
         </p>
@@ -1134,29 +1151,29 @@
         <h2 class="text-3xl font-bold text-white mb-10">Entre em Contato</h2>
         
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto px-4">
-            <!-- Card do Formulário -->
-            <div class="bg-[rgba(27,14,65,0.7)] backdrop-blur-sm rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-blue-500/20 transform hover:-translate-y-2">
-                <h3 class="text-xl font-semibold text-white mb-4">Envie sua mensagem</h3>
-                
-                <form id="contactForm" class="flex flex-col gap-4" action="/contact" method="POST">
-                    <input type="text" name="name" placeholder="Nome" required class="p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white focus:outline-none">
-                    
-                    <input type="email" name="email" placeholder="E-mail" required class="p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white focus:outline-none">
-                    
-                    <div class="grid grid-cols-2 gap-2">
-                        <button type="button" class="option-btn p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white hover:bg-[#2B0F52] transition-all">Orçamento</button>
-                        <button type="button" class="option-btn p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white hover:bg-[#2B0F52] transition-all">Suporte</button>
-                        <button type="button" class="option-btn p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white hover:bg-[#2B0F52] transition-all">Dúvidas</button>
-                        <button type="button" class="option-btn p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white hover:bg-[#2B0F52] transition-all">Parceria</button>
-                    </div>
-                    
-                    <textarea name="message" placeholder="Escreva sua mensagem..." required class="p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white focus:outline-none"></textarea>
-                    
-                    <button type="submit" id="submitButton" class="px-6 py-3 bg-blue-600 hover:bg-blue-800 transition-all text-white font-semibold rounded-lg relative mt-2">
-                        Enviar
-                    </button>
-                </form>
-            </div>
+          <!-- Card do Formulário -->
+          <div class="bg-[rgba(27,14,65,0.7)] backdrop-blur-sm rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-blue-500/20 transform hover:-translate-y-2">
+              <h3 class="text-xl font-semibold text-white mb-4">Envie sua mensagem</h3>
+
+              <form id="contactForm" class="flex flex-col gap-4">
+                  <input type="text" name="name" placeholder="Nome" required class="p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white focus:outline-none">
+
+                  <input type="email" name="email" placeholder="E-mail" required class="p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white focus:outline-none">
+
+                  <div class="grid grid-cols-2 gap-2">
+                      <button type="button" class="option-btn p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white hover:bg-[#2B0F52] transition-all">Orçamento</button>
+                      <button type="button" class="option-btn p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white hover:bg-[#2B0F52] transition-all">Suporte</button>
+                      <button type="button" class="option-btn p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white hover:bg-[#2B0F52] transition-all">Dúvidas</button>
+                      <button type="button" class="option-btn p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white hover:bg-[#2B0F52] transition-all">Parceria</button>
+                  </div>
+
+                  <textarea name="message" placeholder="Escreva sua mensagem..." required class="p-3 rounded bg-[rgba(9,3,34,0.7)] backdrop-blur-sm text-white focus:outline-none"></textarea>
+
+                  <button type="submit" id="submitButton" class="px-6 py-3 bg-blue-600 hover:bg-blue-800 transition-all text-white font-semibold rounded-lg relative mt-2">
+                      Enviar
+                  </button>
+              </form>
+          </div>
             
             <!-- Card de Contato Direto -->
             <div class="bg-[rgba(27,14,65,0.7)] backdrop-blur-sm rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-green-500/20 transform hover:-translate-y-2">
@@ -1191,49 +1208,60 @@
         </div>
     </section>
 
-    <!-- Script para marcar opção selecionada e envio do formulário -->
+    <!-- Script p/ marcar opção selecionada e envio do formulário -->
     <script>
-        
-        document.querySelectorAll('.option-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        document.querySelectorAll('.option-btn').forEach(btn => {
-            btn.classList.remove('bg-[#2B0F52]');
-            btn.classList.add('bg-[rgba(9,3,34,0.7)]');
-        });
-
-        this.classList.remove('bg-[rgba(9,3,34,0.7)]');
-        this.classList.add('bg-[#2B0F52]');
-    });
-});
-  
-// Script para o envio do formulário via WhatsApp
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const submitButton = document.getElementById('submitButton');
-    submitButton.innerHTML = 'Enviando...';
-    submitButton.classList.add('animate-pulse');
-
-    // Coletando os dados do formulário
-    const nome = this.querySelector('[name="name"]').value;
-    const email = this.querySelector('[name="email"]').value;
-    const assunto = this.querySelector('[name="subject"]').value;
-    const mensagem = `*Novo contato pelo site*%0A%0A*Nome:* ${encodeURIComponent(nome)}%0A*Email:* ${encodeURIComponent(email)}%0A*Assunto:* ${encodeURIComponent(assunto)}`;
-    const whatsappNumber = "5511956795412";
-    const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(mensagem)}`;
-    console.log('Redirecionando para WhatsApp');
-    
-    setTimeout(() => {
-        submitButton.innerHTML = 'Enviar';
-        submitButton.classList.remove('animate-pulse');
-        
-        // Redirecionar para WhatsApp
-        window.open(whatsappLink, '_blank');
-
-        this.reset();
-    }, 800);
-});
-    </script>
+     
+     document.querySelectorAll('.option-btn').forEach(button => {
+          button.addEventListener('click', function() {
+              document.querySelectorAll('.option-btn').forEach(btn => {
+                  btn.classList.remove('bg-[#2B0F52]');
+                  btn.classList.add('bg-[rgba(9,3,34,0.7)]');
+              });
+      
+              this.classList.remove('bg-[rgba(9,3,34,0.7)]');
+              this.classList.add('bg-[#2B0F52]');
+          });
+      });
+      
+      document.getElementById('contactForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          
+          const submitButton = document.getElementById('submitButton');
+          submitButton.innerHTML = 'Enviando...';
+          submitButton.classList.add('animate-pulse');
+      
+          // Captura os valores do formulário
+          const nome = this.querySelector('[name="name"]').value;
+          const email = this.querySelector('[name="email"]').value;
+          const mensagem = this.querySelector('[name="message"]').value;
+      
+          // Captura a opção selecionada
+          let assunto = "Não informado";
+          document.querySelectorAll('.option-btn').forEach(btn => {
+              if (btn.classList.contains('bg-[#2B0F52]')) {
+                  assunto = btn.textContent;
+              }
+          });
+      
+          // Formatação da mensagem
+          const mensagemFormatada = `*Novo contato pelo site*%0A%0A*Nome:* ${encodeURIComponent(nome)}%0A*Email:* ${encodeURIComponent(email)}%0A*Assunto:* ${encodeURIComponent(assunto)}%0A*Mensagem:* ${encodeURIComponent(mensagem)}`;
+      
+          const whatsappNumber = "5511956795412";
+          const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${mensagemFormatada}`;
+      
+          console.log('Redirecionando para WhatsApp');
+          
+          setTimeout(() => {
+              submitButton.innerHTML = 'Enviar';
+              submitButton.classList.remove('animate-pulse');
+      
+              window.open(whatsappLink, '_blank');
+      
+              // Resetar o formulário
+              this.reset();
+          }, 800);
+      });
+      </script>
 
     <!-- Script para o efeito espacial -->
     <script>
@@ -1243,7 +1271,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
             starsContainer.className = 'stars-container';
             document.body.appendChild(starsContainer);
             
-            // Criar estrelas em diferentes tamanhos
+            
             const starCount = 200;
             
             for (let i = 0; i < starCount; i++) {
@@ -1331,7 +1359,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
   </div>
 </div>
 
-<!-- Estilos do Terminal -->
+
 <style>
   .terminal-content {
     font-family: 'HackerFont', monospace;
@@ -1400,21 +1428,21 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     color: #0f0;
     margin: 10px 0;
   }
-  /* Mobile Responsiveness */
+
   @media (max-width: 768px) {
     .terminal-content {
-      font-size: 14px; /* Ajusta o tamanho da fonte para telas menores */
+      font-size: 14px; 
     }
   }
 
   @media (max-width: 480px) {
     .terminal-content {
-      font-size: 12px; /* Ajusta ainda mais para telas muito pequenas */
+      font-size: 12px; 
     }
   }
 </style>
 
-<!-- Script do Terminal -->
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const terminal = document.getElementById('hacker-terminal');
@@ -1422,7 +1450,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     const closeTerminal = document.getElementById('close-terminal');
     const logo = document.querySelector('.logo-container img');
     
-    // Sequência de comandos e respostas
+
     const terminalSequence = [
       { text: 'Iniciando FlyHigh.Tech...', type: 'command', delay: 500 },
       { text: 'Sistema inicializado com sucesso.', type: 'response', delay: 800 },
@@ -1430,7 +1458,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
       { text: 'Conexão estabelecida com sucesso! IP: 192.168.1.1', type: 'response', delay: 1200 },
       { text: 'Verificando segurança da rede...', type: 'command', delay: 800 },
       { text: '[ ████████████████ ] 100% Completo', type: 'response', delay: 1500 },
-      { text: 'Hackeando o sistema do PF... (brinks 😎)', type: 'command', delay: 1000 },
+      { text: 'Hackeando o sistema da PF... (brinks 😎)', type: 'command', delay: 1000 },
       { text: 'ALERTA! ACESSO NEGADO! OPERAÇÃO ILEGAL DETECTADA!', type: 'error', delay: 1000 },
       { text: 'Brincadeira cancelada. Voltando às operações normais...', type: 'warning', delay: 1200 },
       { text: 'Preparando ambiente de desenvolvimento...', type: 'command', delay: 800 },
@@ -1456,7 +1484,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
       { text: 'Seu site já está voando nas nuvens 🚀', type: 'success', delay: 1000 }
     ];
     
-    // Função para adicionar uma linha no terminal com efeito de digitação
+
     function addTerminalLine(text, type, index = 0) {
       if (index === 0) {
         const line = document.createElement('div');
@@ -1477,12 +1505,12 @@ document.getElementById('contactForm').addEventListener('submit', function(event
           typeText(element, text, index + 1);
         }, Math.random() * 50 + 30);
       } else {
-        // Adicionar cursor piscante no final
+
         const cursor = document.createElement('span');
         cursor.classList.add('terminal-cursor');
         element.appendChild(cursor);
         
-        // Remover o cursor após 500ms
+
         setTimeout(() => {
           if (element.contains(cursor)) {
             element.removeChild(cursor);
@@ -1491,7 +1519,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
       }
     }
     
-    // Função para executar a sequência do terminal
+
     function runTerminalSequence() {
       let currentIndex = 0;
       
@@ -1510,8 +1538,8 @@ document.getElementById('contactForm').addEventListener('submit', function(event
           
           currentIndex++;
           setTimeout(processNextItem, item.delay);
-          
-          // Auto-scroll para o final
+
+
           terminal.scrollTop = terminal.scrollHeight;
         }
       }
@@ -1519,22 +1547,22 @@ document.getElementById('contactForm').addEventListener('submit', function(event
       processNextItem();
     }
     
-    // Evento de clique na logo
+
     logo.addEventListener('click', function(e) {
       e.preventDefault();
       terminal.classList.remove('hidden');
-      terminalOutput.innerHTML = ''; // Limpar output anterior
+      terminalOutput.innerHTML = ''; 
       
-      // Mostrar o terminal com efeito de fade in
+
       setTimeout(() => {
         terminal.querySelector('.terminal-content').style.opacity = '1';
       }, 100);
       
-      // Iniciar a sequência do terminal
+
       runTerminalSequence();
     });
     
-    // Fechar o terminal
+
     closeTerminal.addEventListener('click', function() {
       terminal.querySelector('.terminal-content').style.opacity = '0';
       setTimeout(() => {

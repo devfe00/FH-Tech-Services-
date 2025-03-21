@@ -637,125 +637,117 @@
     console.log("%c Você é um dev? Vem trabalhar com a FlyHigh Tech!", "color: #00a2ff; font-size: 20px; font-weight: bold; text-shadow: 0 0 5px rgba(0,162,255,0.5);");
    
     const titleText = "{<FH Tech/>}"; 
-    const descriptionText = "Sites e apps profissionais p/ empreendedores"; 
-     
-    const titleElement = document.getElementById('title'); 
-    const descriptionElement = document.getElementById('description'); 
-    
-    
-    const titleCursor = document.createElement('span'); 
-    titleCursor.className = 'cursor'; 
-    titleElement.appendChild(titleCursor); 
-    
-    const descriptionCursor = document.createElement('span'); 
-    descriptionCursor.className = 'cursor'; 
-    descriptionElement.appendChild(descriptionCursor); 
-    
-    
-    function typeText(element, text, cursor, speed) { 
-      let i = 0; 
-      element.textContent = ''; 
-      element.appendChild(cursor); 
-      
-      return new Promise(resolve => { 
-        const interval = setInterval(() => { 
-          if (i < text.length) { 
-            
-            const char = text.charAt(i);
-            const charNode = document.createTextNode(char);
-            
-            
-            element.insertBefore(charNode, cursor);
-            
-            
-            if (Math.random() < 0.05) {
-              const randomChar = element.childNodes[Math.floor(Math.random() * (element.childNodes.length - 1))];
-              if (randomChar && randomChar.nodeType === Node.TEXT_NODE) {
-                const span = document.createElement('span');
-                span.className = 'glitch';
-                span.textContent = randomChar.textContent;
-                element.replaceChild(span, randomChar);
-                
-                
-                setTimeout(() => {
-                  if (span.parentNode) {
-                    const textNode = document.createTextNode(span.textContent);
-                    span.parentNode.replaceChild(textNode, span);
-                  }
-                }, 300);
-              }
-            }
-            
-            i++; 
-          } else { 
-            clearInterval(interval); 
-            resolve(); 
-          } 
-        }, speed); 
-      }); 
-    } 
-    
-   
-    function simulateTypingError(element, finalText, cursor, position, speed) {
-      return new Promise(async resolve => {
-        
-        await typeTextUntilPosition(element, finalText, cursor, position, speed);
-        
-        const wrongChar = document.createTextNode('#');
-        element.insertBefore(wrongChar, cursor);
-        await pause(300);
-        
+    const descriptionText = "Sites e apps profissionais p/ empreendedores";
 
-        element.removeChild(wrongChar);
-        await pause(200);
+const titleElement = document.getElementById('title');
+const descriptionElement = document.getElementById('description');
+
+// Android
+const isAndroid = /Android/i.test(navigator.userAgent);
+if (isAndroid) {
+  titleElement.style.fontSize = '1.8em';
+  descriptionElement.style.fontSize = '0.85em';
+}
+
+const titleCursor = document.createElement('span');
+titleCursor.className = 'cursor';
+titleElement.appendChild(titleCursor);
+
+const descriptionCursor = document.createElement('span');
+descriptionCursor.className = 'cursor';
+descriptionElement.appendChild(descriptionCursor);
+
+function typeText(element, text, cursor, speed) {
+  let i = 0;
+  element.textContent = '';
+  element.appendChild(cursor);
+  
+  return new Promise(resolve => {
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        const char = text.charAt(i);
+        const charNode = document.createTextNode(char);
         
+        element.insertBefore(charNode, cursor);
         
-        await typeTextUntilPosition(element, finalText.substring(position), cursor, finalText.length, speed);
-        resolve();
-      });
-    }
-    
-    
-    function typeTextUntilPosition(element, text, cursor, position, speed) {
-      let i = 0;
-      return new Promise(resolve => {
-        const interval = setInterval(() => {
-          if (i < position && i < text.length) {
-            const char = document.createTextNode(text.charAt(i));
-            element.insertBefore(char, cursor);
-            i++;
-          } else {
-            clearInterval(interval);
-            resolve();
-          }
-        }, speed);
-      });
-    }
-    
-     
-    function deleteText(element, cursor, speed) { 
-      return new Promise(resolve => { 
-        const interval = setInterval(() => { 
-          if (element.childNodes.length > 1) { 
+        if (Math.random() < 0.05) {
+          const randomChar = element.childNodes[Math.floor(Math.random() * (element.childNodes.length - 1))];
+          if (randomChar && randomChar.nodeType === Node.TEXT_NODE) {
+            const span = document.createElement('span');
+            span.className = 'glitch';
+            span.textContent = randomChar.textContent;
+            element.replaceChild(span, randomChar);
             
-            const lastNode = element.childNodes[element.childNodes.length - 2];
-            if (lastNode) {
-              element.removeChild(lastNode);
-            }
-          } else { 
-            clearInterval(interval); 
-            resolve(); 
-          } 
-        }, speed); 
-      }); 
-    } 
+            setTimeout(() => {
+              if (span.parentNode) {
+                const textNode = document.createTextNode(span.textContent);
+                span.parentNode.replaceChild(textNode, span);
+              }
+            }, 300);
+          }
+        }
+        
+        i++;
+      } else {
+        clearInterval(interval);
+        resolve();
+      }
+    }, speed);
+  });
+}
+
+function simulateTypingError(element, finalText, cursor, position, speed) {
+  return new Promise(async resolve => {
+    await typeTextUntilPosition(element, finalText, cursor, position, speed);
+    const wrongChar = document.createTextNode('#');
+    element.insertBefore(wrongChar, cursor);
+    await pause(300);
     
-   
-    function pause(duration) { 
-      return new Promise(resolve => { 
-        setTimeout(resolve, duration); 
-      }); 
-    } 
+    element.removeChild(wrongChar);
+    await pause(200);
+    
+    await typeTextUntilPosition(element, finalText.substring(position), cursor, finalText.length, speed);
+    resolve();
+  });
+}
+
+function typeTextUntilPosition(element, text, cursor, position, speed) {
+  let i = 0;
+  return new Promise(resolve => {
+    const interval = setInterval(() => {
+      if (i < position && i < text.length) {
+        const char = document.createTextNode(text.charAt(i));
+        element.insertBefore(char, cursor);
+        i++;
+      } else {
+        clearInterval(interval);
+        resolve();
+      }
+    }, speed);
+  });
+}
+
+function deleteText(element, cursor, speed) {
+  return new Promise(resolve => {
+    const interval = setInterval(() => {
+      if (element.childNodes.length > 1) {
+        const lastNode = element.childNodes[element.childNodes.length - 2];
+        if (lastNode) {
+          element.removeChild(lastNode);
+        }
+      } else {
+        clearInterval(interval);
+        resolve();
+      }
+    }, speed);
+  });
+}
+
+function pause(duration) {
+  return new Promise(resolve => {
+    setTimeout(resolve, duration);
+  });
+}
     
     // Função para animar os contadores
     function animateCounters() {

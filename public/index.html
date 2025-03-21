@@ -629,15 +629,15 @@
       font-size: 1.6rem;
     }
   }
+  
   </style>
 
   <script> 
-    // segredo?
+    // Segredo?
     console.log("%c Você é um dev? Vem trabalhar com a FlyHigh Tech!", "color: #00a2ff; font-size: 20px; font-weight: bold; text-shadow: 0 0 5px rgba(0,162,255,0.5);");
    
     const titleText = "{<FH Tech/>}"; 
-    const descriptionText = "Criação de websites && aplicativos_mobile para profissionais && empreendedores"; 
-    
+    const descriptionText = "Sites e apps para profissionais e empreendedores"; 
      
     const titleElement = document.getElementById('title'); 
     const descriptionElement = document.getElementById('description'); 
@@ -914,16 +914,25 @@
     </section>
     
     
-    <!-- Terceira Camada: Benefícios e Diferenciais -->
-    <section class="py-16 text-center bg-transparent relative z-10">
-      <h2 class="text-3xl font-bold text-white mb-8 animate-fade-in whitespace-nowrap flex justify-center items-center">
-        Por que escolher a <span class="text-blue-400">&nbsp;FlyHigh Tech</span>?
-      </h2>
-      
+      <!-- Terceira Camada: Benefícios e Diferenciais -->
+      <section class="py-16 text-center bg-transparent relative z-10">
+        <h2 class="text-3xl font-bold text-white mb-8 animate-fade-in whitespace-nowrap">
+          Por que escolher a <span class="text-blue-400">FlyHigh Tech?</span>
+          <br class="mobile-break">
+        </h2>
+
         <p class="text-white text-lg mb-6 animate-fade-in delay-200">
-            Design inovador, tecnologia de ponta e experiência de usuário aprimorada.
+          Design inovador, tecnologia de ponta e experiência de usuário aprimorada.
         </p>
-        
+
+        <style>
+          
+          @media (max-width: 767px) {
+            .mobile-break {
+              display: block;
+            }
+          }
+        </style>
         <!-- Benefícios -->
         <div class="flex justify-center gap-12 flex-wrap">
             <!-- Benefício 1 -->
@@ -1033,6 +1042,40 @@
   }
 }
 }
+
+.benefit-card {
+  will-change: transform, opacity; /* Otimiza animações de rotação e escala */
+}
+
+.benefit-card {
+  touch-action: none; /* Impede que gestos de touch sejam interferidos */
+}
+
+.benefit-card:hover, .benefit-card:active {
+  transform: rotate(3deg) scale(1.05);
+  transition: all 0.3s ease;
+}
+
+@supports(backdrop-filter: blur(5px)) {
+  section.bg-gray-800\/50 {
+    backdrop-filter: blur(5px);
+  }
+}
+
+.benefit-card {
+  pointer-events: all;
+}
+
+@keyframes glitch {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+.glitch-effect {
+  animation: glitch 0.5s ease-in-out forwards; /* Aumenta o tempo para dar um efeito mais claro */
+}
+
 </style>
 
 <script>

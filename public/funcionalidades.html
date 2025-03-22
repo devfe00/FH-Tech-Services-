@@ -412,31 +412,56 @@
         }
 
         /* Meteoro */
-        .meteor {
+                .meteor {
             position: absolute;
-            width: 300px;
-            height: 1px;
+            width: 400px; /* Aumentado o comprimento */
+            height: 2px;
             transform-origin: right;
-            background-image: linear-gradient(to right, transparent, var(--secondary-color), var(--primary-color), white);
+            background-image: linear-gradient(to right, 
+                transparent 10%, 
+                rgba(255, 255, 255, 0.3) 20%, 
+                var(--secondary-color) 40%, 
+                var(--primary-color) 60%, 
+                white 80%, 
+                white 100%);
             opacity: 0;
             animation: meteor linear forwards;
             pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.5); 
+            border-radius: 50%;
+        }
+
+        .meteor-tail {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: radial-gradient(circle, white, rgba(255, 255, 255, 0.3) 70%, transparent 100%);
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { opacity: 1; transform: scale(0.8); }
+            to { opacity: 0.5; transform: scale(1.2); }
         }
 
         @keyframes meteor {
             0% {
                 opacity: 0;
-                transform: translateX(0) translateY(0) rotate(45deg);
+                transform: translateX(0) translateY(0) rotate(35deg);
             }
-            10% {
+            5% {
                 opacity: 1;
             }
-            70% {
-                opacity: 1;
+            80% {
+                opacity: 0.8;
             }
             100% {
                 opacity: 0;
-                transform: translateX(-500px) translateY(500px) rotate(45deg);
+                transform: translateX(-700px) translateY(700px) rotate(35deg);
             }
         }
 
@@ -714,18 +739,18 @@
             
             <div class="testimonials">
                 <div class="testimonial">
-                    <p>"A tecnologia da FlyHigh transformou completamente nossa abordagem de desenvolvimento de produtos. Resultados impressionantes!"</p>
-                    <h4>- Maria Silva, CEO da TechInova</h4>
+                    <p>"Fiz meu site com a FlyHigh e ficou exatamente como eu queria. Atendimento top e entrega rápida!"</p>
+                    <h4>- Lucas Almeida, dono de loja Virtual</h4>
                 </div>
-                
+            
                 <div class="testimonial">
-                    <p>"Desde que implementamos as soluções de IA da FlyHigh, nossa eficiência aumentou em 300%. Simplesmente revolucionário."</p>
-                    <h4>- João Pereira, CTO da DataFuture</h4>
+                    <p>"Eu não entendia nada de tecnologia, mas a FlyHigh me ajudou a colocar meu negócio no digital sem dor de cabeça."</p>
+                    <h4>- Carla Santos, personal trainer</h4>
                 </div>
-                
+            
                 <div class="testimonial">
-                    <p>"A experiência imersiva proporcionada pelos sistemas de RV da FlyHigh não tem comparação no mercado. É o futuro, hoje."</p>
-                    <h4>- Ana Costa, Diretora de Inovação da VRWorld</h4>
+                    <p>"Precisava de um site profissional e a FlyHigh entregou algo muito acima das minhas expectativas. Recomendo demais!"</p>
+                    <h4>- Pedro Rocha, fotógrafo freelancer</h4>
                 </div>
             </div>
         </section>

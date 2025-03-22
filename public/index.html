@@ -633,21 +633,38 @@
   </style>
 
   <script> 
-    // Segredo?
+    // Segredo
     console.log("%c Você é um dev? Vem trabalhar com a FlyHigh Tech!", "color: #00a2ff; font-size: 20px; font-weight: bold; text-shadow: 0 0 5px rgba(0,162,255,0.5);");
    
     const titleText = "{<FH Tech/>}"; 
-    const descriptionText = "Sites e apps profissionais p/ empreendedores";
+const descriptionText = "Sites e apps profissionais p/ empreendedores";
 
 const titleElement = document.getElementById('title');
 const descriptionElement = document.getElementById('description');
 
-// Android
-const isAndroid = /Android/i.test(navigator.userAgent);
-if (isAndroid) {
-  titleElement.style.fontSize = '1.8em';
-  descriptionElement.style.fontSize = '0.85em';
+
+titleElement.style.textAlign = 'center';
+descriptionElement.style.textAlign = 'center';
+titleElement.style.width = '100%';
+descriptionElement.style.width = '100%';
+
+// Ajustes responsivos
+function adjustFontSize() {
+  if (window.innerWidth <= 768) { 
+    titleElement.style.fontSize = '1.5em';
+    descriptionElement.style.fontSize = '0.8em';
+  } else { 
+    titleElement.style.fontSize = '2.8em';
+    descriptionElement.style.fontSize = '1.2em';
+  }
 }
+
+// inicial e ao redimensionar
+adjustFontSize();
+window.addEventListener('resize', adjustFontSize);
+
+// Linha
+titleElement.style.whiteSpace = 'nowrap';
 
 const titleCursor = document.createElement('span');
 titleCursor.className = 'cursor';
@@ -748,6 +765,7 @@ function pause(duration) {
     setTimeout(resolve, duration);
   });
 }
+
     
     // Função para animar os contadores
     function animateCounters() {

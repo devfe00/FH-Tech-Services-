@@ -637,13 +637,13 @@
     console.log("%c Você é um dev? Vem trabalhar com a FlyHigh Tech!", "color: #00a2ff; font-size: 20px; font-weight: bold; text-shadow: 0 0 5px rgba(0,162,255,0.5);");
    
     const titleText = "{<FH Tech/>}"; 
-const descriptionText = "Sites e apps profissionais p/ empreendedores.";
+const descriptionText = "Sites e apps profissionais.";
 
 const titleElement = document.getElementById('title');
 const descriptionElement = document.getElementById('description');
 
 // espaço vertical - move para baixo na página
-titleElement.style.marginTop = '25vh'; 
+titleElement.style.marginTop = '10vh'; 
 descriptionElement.style.marginTop = '20px'; 
 
 // Centralização horizontal
@@ -657,7 +657,7 @@ function adjustFontSize() {
   if (window.innerWidth <= 768) { 
     titleElement.style.fontSize = '1.5em';
     descriptionElement.style.fontSize = '0.8em';
-    titleElement.style.marginTop = '20vh'; 
+    titleElement.style.marginTop = '15vh'; 
   } else { 
     titleElement.style.fontSize = '3.5em';
     descriptionElement.style.fontSize = '1.3em';

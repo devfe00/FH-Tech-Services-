@@ -1059,5 +1059,67 @@
             </script>
 
  <script src="funcionalidade.js"></script>
+
+ <style>
+    footer {
+      padding: 15px 20px;
+      text-align: center;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      margin-top: auto;
+      font-family: 'Inter', 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: transparent;
+    }
+    
+    /* Tema Escuro (Padrão) */
+    footer p {
+      margin: 5px 0;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    
+    footer p:first-child {
+      font-weight: 300;
+      font-size: 0.7rem;
+      opacity: 0.75;
+    }
+    
+    footer p:last-child {
+      font-size: 0.6rem;
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  
+    footer .trademark {
+      color: rgba(64, 149, 255, 0.85);
+    }
+  
+    /* Tema Claro */
+    body.light-theme footer p {
+      color: rgba(0, 0, 0, 0.75);
+    }
+  
+    body.light-theme footer p:first-child {
+      opacity: 0.8;
+    }
+  
+    body.light-theme footer p:last-child {
+      opacity: 0.7;
+    }
+  
+    body.light-theme footer .trademark {
+      color: rgba(0, 100, 255, 0.85);
+    }
+  </style>
+    
+  <footer>
+    <p>&copy; 2025 FlyHigh.Tech. Todos os direitos reservados.</p>
+    <p>Developed by <span class="trademark">®FH Tech</span></p>
+  </footer>
+
 </body>
 </html>

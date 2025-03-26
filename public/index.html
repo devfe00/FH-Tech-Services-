@@ -8,6 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="icon" href="/path/to/your/favicon.ico">
+    <link rel="icon" href="img/favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
     <script src="script.js" defer></script>
 
     <style>
@@ -634,7 +638,7 @@
 
   <script> 
     // Segredo
-    console.log("%c Você é um dev? Vem trabalhar com a FlyHigh Tech!", "color: #00a2ff; font-size: 20px; font-weight: bold; text-shadow: 0 0 5px rgba(0,162,255,0.5);");
+    console.log("%c É um dev? Se junte a nõs e trabalhe na FlyHigh Tech!", "color: #00a2ff; font-size: 20px; font-weight: bold; text-shadow: 0 0 5px rgba(0,162,255,0.5);");
    
     const titleText = "{<FH Tech/>}"; 
 const descriptionText = "Sites e apps profissionais.";
@@ -1502,131 +1506,121 @@ function pause(duration) {
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const terminal = document.getElementById('hacker-terminal');
-    const terminalOutput = document.getElementById('terminal-output');
-    const closeTerminal = document.getElementById('close-terminal');
-    const logo = document.querySelector('.logo-container img');
-    
+  const logo = document.querySelector('.logo-container img');
+  const body = document.body;
+  let timeMachineActivated = false;
 
-    const terminalSequence = [
-      { text: 'Iniciando FlyHigh.Tech...', type: 'command', delay: 500 },
-      { text: 'Sistema inicializado com sucesso.', type: 'response', delay: 800 },
-      { text: 'Conectando ao servidor...', type: 'command', delay: 1000 },
-      { text: 'Conexão estabelecida com sucesso! IP: 192.168.1.1', type: 'response', delay: 1200 },
-      { text: 'Verificando segurança da rede...', type: 'command', delay: 800 },
-      { text: '[ ████████████████ ] 100% Completo', type: 'response', delay: 1500 },
-      { text: 'Hackeando o sistema da PF... (brinks 😎)', type: 'command', delay: 1000 },
-      { text: 'ALERTA! ACESSO NEGADO! OPERAÇÃO ILEGAL DETECTADA!', type: 'error', delay: 1000 },
-      { text: 'Brincadeira cancelada. Voltando às operações normais...', type: 'warning', delay: 1200 },
-      { text: 'Preparando ambiente de desenvolvimento...', type: 'command', delay: 800 },
-      { text: 'Instalando dependências: React, TailwindCSS, Node.js', type: 'response', delay: 1000 },
-      { text: 'Otimizando performance do site...', type: 'command', delay: 900 },
-      { text: 'Configurando CDN e compressão de arquivos...', type: 'response', delay: 800 },
-      { text: 'Implantando site na nuvem...', type: 'command', delay: 1000 },
-      { text: `
-    /'___\\  /'___\\           /'___\\       
-   /\\ \\__/ /\\ \\__/  __  __  /\\ \\__/       
-   \\ \\ ,__\\\\ \\ ,__\\/\\ \\/\\ \\ \\ \\ ,__\\      
-    \\ \\ \\_/ \\ \\ \\_/\\ \\ \\_\\ \\ \\ \\ \\_/      
-     \\ \\_\\   \\ \\_\\  \\ \\____/  \\ \\_\\       
-      \\/_/    \\/_/   \\/___/    \\/_/       
-                                      
-   /'___\\           /'___\\                
-  /\\ \\__/  __  __  /\\ \\__/                
-  \\ \\ ,__\\/\\ \\/\\ \\ \\ \\ ,__\\               
-   \\ \\ \\_/\\ \\ \\_\\ \\ \\ \\ \\_/               
-    \\ \\_\\  \\ \\____/  \\ \\_\\                
-     \\/_/   \\/___/    \\/_/                
-`, type: 'ascii', delay: 800 },
-      { text: 'Seu site já está voando nas nuvens 🚀', type: 'success', delay: 1000 }
-    ];
-    
-
-    function addTerminalLine(text, type, index = 0) {
-      if (index === 0) {
-        const line = document.createElement('div');
-        line.classList.add('terminal-line');
-        line.classList.add(`terminal-${type}`);
-        terminalOutput.appendChild(line);
-        
-        setTimeout(() => {
-          typeText(line, text, 0);
-        }, 100);
+  const styles = {
+    retro: `
+      body {
+        background-color: #1a1a1a;
+        filter: sepia(0.5) contrast(1.2);
+        transition: all 1s ease-in-out;
       }
-    }
-    
-    function typeText(element, text, index) {
-      if (index < text.length) {
-        element.textContent = text.substring(0, index + 1);
-        setTimeout(() => {
-          typeText(element, text, index + 1);
-        }, Math.random() * 50 + 30);
-      } else {
-
-        const cursor = document.createElement('span');
-        cursor.classList.add('terminal-cursor');
-        element.appendChild(cursor);
-        
-
-        setTimeout(() => {
-          if (element.contains(cursor)) {
-            element.removeChild(cursor);
-          }
-        }, 500);
+      * {
+        font-family: 'Courier New', monospace !important;
+        color: #00ff00 !important;
       }
-    }
-    
-
-    function runTerminalSequence() {
-      let currentIndex = 0;
-      
-      function processNextItem() {
-        if (currentIndex < terminalSequence.length) {
-          const item = terminalSequence[currentIndex];
-          
-          if (item.type === 'ascii') {
-            const asciiArt = document.createElement('pre');
-            asciiArt.classList.add('terminal-ascii');
-            asciiArt.textContent = item.text;
-            terminalOutput.appendChild(asciiArt);
-          } else {
-            addTerminalLine(item.text, item.type);
-          }
-          
-          currentIndex++;
-          setTimeout(processNextItem, item.delay);
-
-
-          terminal.scrollTop = terminal.scrollHeight;
-        }
+      .logo-container img {
+        transform: rotate(360deg) scale(1.5);
+        filter: grayscale(1) brightness(1.5);
       }
-      
-      processNextItem();
-    }
+    `,
+    futuristic: `
+      body {
+        background-color: #000033;
+        background-image: linear-gradient(to right, #000033, #000066);
+        filter: contrast(1.2) hue-rotate(90deg);
+        transition: all 1s ease-in-out;
+      }
+      * {
+        font-family: 'Arial', sans-serif !important;
+        color: #00ffff !important;
+        text-shadow: 0 0 10px rgba(0,255,255,0.7);
+      }
+      .logo-container img {
+        transform: rotate(-360deg) scale(0.5);
+        filter: brightness(2) saturate(2);
+      }
+    `
+  };
+
+  const styleElement = document.createElement('style');
+  styleElement.id = 'time-machine-styles';
+  document.head.appendChild(styleElement);
+
+  // Criar overlay de efeito de viagem no tempo
+  const createTimeWarpOverlay = () => {
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'black';
+    overlay.style.zIndex = '9999';
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 1s ease-in-out';
     
+    // Criar efeito de linhas de tempo
+    for (let i = 0; i < 50; i++) {
+      const line = document.createElement('div');
+      line.style.position = 'absolute';
+      line.style.width = '2px';
+      line.style.height = `${Math.random() * 100}%`;
+      line.style.left = `${Math.random() * 100}%`;
+      line.style.top = '0';
+      line.style.backgroundColor = `rgba(0,255,255,${Math.random()})`;
+      line.style.transform = `rotate(${Math.random() * 360}deg)`;
+      line.style.opacity = '0';
+      line.style.transition = 'all 1s ease-in-out';
+      overlay.appendChild(line);
+    }
 
-    logo.addEventListener('click', function(e) {
-      e.preventDefault();
-      terminal.classList.remove('hidden');
-      terminalOutput.innerHTML = ''; 
+    document.body.appendChild(overlay);
+    return overlay;
+  };
+
+  function activateTimeMachine() {
+    if (timeMachineActivated) {
+      // Estado original
+      styleElement.textContent = '';
+      document.querySelectorAll('.time-warp-overlay').forEach(el => el.remove());
+      timeMachineActivated = false;
+      return;
+    }
+
+    // Criar overlay de efeito
+    const overlay = createTimeWarpOverlay();
+
+    // Ativar efeito de viagem no tempo
+    setTimeout(() => {
+      overlay.style.opacity = '1';
       
+      // Animar linhas do overlay
+      overlay.childNodes.forEach((line, index) => {
+        setTimeout(() => {
+          line.style.opacity = '1';
+        }, index * 20);
+      });
+    }, 100);
 
+
+    const mode = Math.random() > 0.5 ? 'retro' : 'futuristic';
+    styleElement.textContent = styles[mode];
+
+    setTimeout(() => {
+      overlay.style.opacity = '0';
       setTimeout(() => {
-        terminal.querySelector('.terminal-content').style.opacity = '1';
-      }, 100);
-      
+        overlay.remove();
+      }, 1000);
+    }, 1500);
 
-      runTerminalSequence();
-    });
-    
+    timeMachineActivated = true;
+  }
 
-    closeTerminal.addEventListener('click', function() {
-      terminal.querySelector('.terminal-content').style.opacity = '0';
-      setTimeout(() => {
-        terminal.classList.add('hidden');
-      }, 500);
-    });
-  });
+  logo.addEventListener('click', activateTimeMachine);
+});
 </script>
 
 </body>

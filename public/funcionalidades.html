@@ -5,6 +5,11 @@
     <meta name="description" content="FlyHigh Tech - Tecnologias inovadoras para o futuro">
     <title>FlyHigh Tech - Funcionalidades</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="img/favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io/favicon-16x16.png">
+    
     <style>
         :root {
             --primary-color: #4a00e0;
@@ -24,10 +29,14 @@
             box-sizing: border-box;
         }
 
-        body {
-            margin: 0;
-            padding: 0;
+        html, body {
+            width: 100%;
+            max-width: 100%;
             overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
             background: var(--dark-bg);
             color: var(--light-text);
             font-family: 'Arial', sans-serif;
@@ -41,7 +50,22 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0;
+            padding: 0 15px; 
+            overflow-x: hidden; 
+        }
+
+
+        body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 4px;
         }
 
         /* Splash Screen */
@@ -760,21 +784,17 @@
         document.addEventListener("DOMContentLoaded", function() {
 
             function activateAllSections() {
-                if (window.innerWidth <= 768) {
-                    document.querySelectorAll('.section').forEach(section => {
-                        section.classList.add('active');
-                    });
-                    
-                    document.querySelectorAll('.testimonial').forEach(testimonial => {
-                        testimonial.classList.add('active');
-                    });
-                }
-            }
-            
-            activateAllSections();
-            
-            window.addEventListener('resize', activateAllSections);
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('active');
         });
+        
+        document.querySelectorAll('.testimonial').forEach(testimonial => {
+            testimonial.classList.add('active');
+        });
+    }
+    
+    activateAllSections();
+});
 
         // Animação da splash screen
         document.addEventListener('DOMContentLoaded', function() {

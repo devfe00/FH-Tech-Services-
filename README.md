@@ -15,7 +15,6 @@ Este repositório contém funcionalidades para construir serviços web rápidos,
   
 ## Como Rodar Localmente
 
-```bash
 git clone https://github.com/devfe00/FH-Tech-Services.git
 cd FH-Tech-Services
 npm install

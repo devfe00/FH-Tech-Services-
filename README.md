@@ -1,20 +1,18 @@
-FH-Tech-Services
+FH Tech
 
-FH-Tech-Services é um repositório voltado para a criação de soluções digitais, com foco em serviços para empresas e indivíduos. O projeto visa fornecer funcionalidades simples e eficientes para facilitar o desenvolvimento e a implementação de sistemas web.
+Fly High Tech oferece soluções digitais completas, focadas em sistemas web e móveis. Criamos plataformas fortes, apps nativos e integrações customizadas, sempre entregando qualidade e performance. Nosso trabalho combina inovação e eficiência, ajudando empresas ou individuos a se destacarem no mercado digital.
 
-Objetivo do Projeto
+##Objetivo do Projeto
 
-Este repositório contém funcionalidades para construir serviços web rápidos, como a configuração de servidores, interações básicas com o cliente e a apresentação de conteúdo dinâmico. Ele é ideal para quem busca implementar soluções digitais personalizadas de maneira ágil e prática.
+- Este repositório contém funcionalidades para construir serviços web rápidos, como a configuração de servidores, interações com o cliente e a apresentação de conteúdo. Ele é ideal para quem busca implementar soluções digitais personalizadas de maneira ágil e prática.
 
-Tecnologias Utilizadas
+##Tecnologias Utilizadas
 
-Node.js (backend) Express.js (framework para servidor) HTML/CSS/JavaScript (frontend) File System (manipulação de arquivos) Como Rodar Localmente
+- HTML/CSS/JavaScript (frontend)
 
-git clone https://github.com/devfe00/FH-Tech-Services.git cd FH-Tech-Services npm install npm start
+?Como Rodar Localmente?
 
-Funcionalidades
-
-Servidor local com Node.js + Express HTML/CSS/JS sem framework Interação dinâmica via JavaScript Mock de dados local via db.js Estrutura modular pra expansão rápida
+- git clone https://github.com/devfe00/FH-Tech-Services.git cd FH-Tech-Services npm install npm start
 
 Visual
 

@@ -10,10 +10,6 @@ Fly High Tech oferece soluções digitais completas, focadas em sistemas web e m
 
 - HTML/CSS/JavaScript (frontend)
 
-?Como Rodar Localmente?
-
-- git clone https://github.com/devfe00/FH-Tech-Services.git cd FH-Tech-Services npm install npm start
-
 Visual
 
 ![Captura de Tela 2025-04-27 às 04 08 03 (2)](https://github.com/user-attachments/assets/3c7071a0-3000-4b83-b2e9-6b8cc8af39e0)

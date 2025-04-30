@@ -1,0 +1,8 @@
+{
+  "name": "fh_tech",
+  "version": "1.0.0",
+  "description": "FH Tech Website",
+  "scripts": {
+    "build": "echo 'No build step needed'"
+  }
+}

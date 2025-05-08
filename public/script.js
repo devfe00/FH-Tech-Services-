@@ -171,4 +171,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 if (document.getElementById('contactForm')) {
 }
+
+
+//código finalizado, agora é só esperar os bugs aparecerem
+  //Fe – o dev mestre dos bugs
+  
+  /*
+       ,--./,-.        </ >ˆ$
+      / #      /
+     |       |
+      \        \
+       `._,._,'
+  */
   
